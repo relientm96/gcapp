@@ -1,11 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
+import Form from '../components/Form';
+import Logo from '../components/Logo';
+
 class LoginScreen extends React.Component {
     render(){
         return (
         <View style={styles.container}>
-            <Text>Login Page</Text>
+            <View style={styles.logoarea}>
+                <Logo/>
+            </View>
+            <Form/>
             <Button
                 title="Go to User Profile"
                 onPress={() => this.props.navigation.navigate('User')}
@@ -16,12 +22,16 @@ class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: 'skyblue',
+    },
+    
+    logoarea: {
+       flex: 2,
+    }
 
 });
 
