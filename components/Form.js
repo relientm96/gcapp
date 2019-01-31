@@ -1,7 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity } from 'react-native';
 
 class Form extends React.Component {
+
+    static navigationOptions = {
+        title: 'Welcome',
+        header: { 
+            visible:false 
+        } 
+    };
+
     render(){
         return (
         <View style={styles.container}>
@@ -16,6 +24,9 @@ class Form extends React.Component {
                 placeholder={'Password'} 
                 underlineColorAndroid='transparent'
                 /> 
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
         </View>
         );
     }
@@ -44,6 +55,22 @@ const styles = StyleSheet.create({
       borderRadius: 25,
       backgroundColor: 'rgba(0,0,0,0.7)',
       paddingLeft: 10,
+    },
+
+    button: {
+        marginTop: 10,
+        paddingTop: 10,
+        width: 250,
+        height: 40,
+        borderRadius: 25,
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        alignItems: 'center',
+    },
+
+    buttonText:{
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#ffffff',
     }
 
 });
