@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import {createStackNavigator, createAppNavigator} from 'react-navigation';
-
-class UserProfile extends React.Component {
+class LoginScreen extends React.Component {
     render(){
         return (
         <View style={styles.container}>
-            <Text>RENDERING</Text>
+            <Text>I am the login page</Text>
         </View>
         );
     }
@@ -23,4 +21,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default UserProfile
+export default LoginScreen

@@ -1,24 +1,19 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import UserProfile from './components/UserProfile'
+import UserProfile from './screens/UserProfile';
+import LoginScreen from './screens/LoginScreen';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <UserProfile></UserProfile>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const AppStackNavigator = createStackNavigator(
+  {
+    User: UserProfile,
+    Login: LoginScreen
   },
-});
+  {    
+    initialRouteName : "Login"
+  }
+);
+
+const App = createAppContainer(AppStackNavigator);
+
+export default App;
 
