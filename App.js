@@ -12,8 +12,12 @@ export default class App extends React.Component {
 
 const AppStackNavigator = createStackNavigator(
   {
-    User: UserProfile,
-    Login: LoginScreen,
+    User: {
+      screen: UserProfile,
+    },
+    Login: { 
+      screen: LoginScreen,
+    }
   },
   {
     initialRouteName : "Login"

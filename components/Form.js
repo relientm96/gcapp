@@ -1,32 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Image} from 'react-native';
 
 class Form extends React.Component {
 
-    static navigationOptions = {
-        title: 'Welcome',
-        header: { 
-            visible:false 
-        } 
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: ""
+      };
+    }
 
     render(){
         return (
         <View style={styles.container}>
             <Image style={styles.logo} source={require('../assets/transparentcoah.png')}></Image>
-            <TextInput 
-                style={styles.textInput}
-                placeholder={'Email'} 
-                underlineColorAndroid='transparent'
-                /> 
-            <TextInput 
-                style={styles.textInput}
-                placeholder={'Password'} 
-                underlineColorAndroid='transparent'
-                /> 
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
+
+            <View style={styles.textinputcontainer}>
+                <TextInput 
+                    style={styles.textInput}
+                    placeholder={'Email'} 
+                    underlineColorAndroid='transparent'
+                    onChangeText={(text) => this.setState({text})}
+                    value={this.state.text}
+                    /> 
+                <TextInput 
+                    style={styles.textInput}
+                    placeholder={'Password'} 
+                    underlineColorAndroid='transparent'
+                    onChangeText={(text) => this.setState({text})}
+                    value={this.state.text}
+                    /> 
+            </View>
         </View>
         );
     }
@@ -35,21 +39,26 @@ class Form extends React.Component {
 const styles = StyleSheet.create({
     
     container: {
+      flex: 1,
       alignItems: 'center',
+      justifyContent: 'center',
       padding: 10,
       marginTop: 5,
     },
 
     logo: {
-        width: 120,
+        width: 150,
         height: 120,
+        padding: 10,
     },
 
     textInput: {
-      marginTop: 8,
+      marginTop: 1,
+      marginBottom: 3,
       width: 250,
       height: 40,
       fontSize: 15,
+      marginVertical: 10,
       color: 'rgba(255,255,255,0.35)',
       opacity: 0.5,
       borderRadius: 25,
@@ -57,20 +66,8 @@ const styles = StyleSheet.create({
       paddingLeft: 10,
     },
 
-    button: {
-        marginTop: 10,
-        paddingTop: 10,
-        width: 250,
-        height: 40,
-        borderRadius: 25,
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        alignItems: 'center',
-    },
-
-    buttonText:{
-        fontSize: 16,
-        fontWeight: '500',
-        color: '#ffffff',
+    textinputcontainer: {
+        marginTop: 50,
     }
 
 });
