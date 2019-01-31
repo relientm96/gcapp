@@ -1,11 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 class LoginScreen extends React.Component {
     render(){
         return (
         <View style={styles.container}>
-            <Text>I am the login page</Text>
+            <Text>Login Page</Text>
+            <Button
+                title="Go to User Profile"
+                onPress={() => this.props.navigation.navigate('User')}
+            />
         </View>
         );
     }
