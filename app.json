@@ -12,9 +12,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/transparentcoah.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "image": "./assets/splashimage.jpg",
+      "resizeMode": "stretch",
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
