@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 
 import Form from '../components/Form';
 
@@ -10,6 +10,11 @@ class LoginScreen extends React.Component {
         title: 'Login',
     };
 
+    _signInAsync = async () => {
+        await AsyncStorage.setItem('userToken', 'abc');
+        this.props.navigation.navigate('App');
+      };
+
     render(){
         return (
         <View style={styles.container}>
@@ -17,7 +22,7 @@ class LoginScreen extends React.Component {
                 <Form/>
                 <TouchableOpacity 
                     style={styles.button}
-                    onPress={() => this.props.navigation.navigate('User')}    
+                    onPress={this._signInAsync}    
                     >            
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
