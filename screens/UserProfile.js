@@ -3,10 +3,6 @@ import { StyleSheet, Text, View, Button, AsyncStorage } from 'react-native';
 
 class UserProfile extends React.Component {
 
-    static navigationOptions = {
-        title: 'User',
-    };
-
     _signOutAsync = async () => {
         await AsyncStorage.clear();
         this.props.navigation.navigate('Auth');

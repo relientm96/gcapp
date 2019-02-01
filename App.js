@@ -4,18 +4,12 @@ import {
   createAppContainer,
 } from 'react-navigation';
 
-import UserProfile from './screens/UserProfile';
 import LoginScreen from './screens/LoginScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 
+import HomeNavigator from './navigators/HomeNavigator';
+
 //Stack of app navigation
-const AppStack = createStackNavigator(
-  { 
-    User: {
-      screen: UserProfile,
-    },  
-  }
-);
 
 //Stack of authentication navigation flow
 const AuthStack = createStackNavigator(
@@ -29,7 +23,7 @@ const AuthStack = createStackNavigator(
 //The Main App Container
 export default createAppContainer(createSwitchNavigator(
   {
-    App: AppStack,
+    App: HomeNavigator,
     Auth: AuthStack,
     AuthLoading: AuthLoadingScreen,
   },
