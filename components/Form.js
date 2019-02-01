@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput} from 'react-native';
 
-import Logo from './Logo'
+import Logo from './Logo';
+import CustomTextInput from './CustomTextInput';
 
 class Form extends React.Component {
     render(){
@@ -9,15 +10,11 @@ class Form extends React.Component {
         <View style={styles.container}>
             <Logo></Logo>
             <View style={styles.textinputcontainer}>
-                <TextInput 
-                    style={styles.textInput}
-                    placeholder={'Email'} 
-                    underlineColorAndroid='transparent'
+                <CustomTextInput 
+                    customPlaceHolder="Email" 
                     /> 
-                <TextInput 
-                    style={styles.textInput}
-                    placeholder={'Password'} 
-                    underlineColorAndroid='transparent'
+                <CustomTextInput 
+                    customPlaceHolder="Password" 
                     /> 
             </View>
         </View>
@@ -33,20 +30,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       padding: 10,
       marginTop: 5,
-    },
-
-    textInput: {
-      marginTop: 1,
-      marginBottom: 3,
-      width: 250,
-      height: 40,
-      fontSize: 15,
-      marginVertical: 10,
-      color: 'rgba(255,255,255,0.35)',
-      opacity: 0.5,
-      borderRadius: 25,
-      backgroundColor: 'rgba(0,0,0,0.7)',
-      paddingLeft: 10,
     },
 
     textinputcontainer: {
