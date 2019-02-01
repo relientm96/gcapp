@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 
 import Form from '../components/Form';
 
@@ -11,6 +11,7 @@ class LoginScreen extends React.Component {
     };
 
     _signInAsync = async () => {
+        await AsyncStorage.setItem('userToken', 'abc');
         this.props.navigation.navigate('App');
       };
 

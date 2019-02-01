@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, AsyncStorage } from 'react-native';
 
 class UserProfile extends React.Component {
 
@@ -8,6 +8,7 @@ class UserProfile extends React.Component {
     };
 
     _signOutAsync = async () => {
+        await AsyncStorage.clear();
         this.props.navigation.navigate('Auth');
       };
 
