@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 import Form from '../components/Form';
 
@@ -13,7 +13,7 @@ class LoginScreen extends React.Component {
     render(){
         return (
         <View style={styles.container}>
-            <View style={styles.formContainer}>
+            <KeyboardAvoidingView style={styles.formContainer}>
                 <Form/>
                 <TouchableOpacity 
                     style={styles.button}
@@ -21,10 +21,10 @@ class LoginScreen extends React.Component {
                     >            
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
-            </View> 
                 <View style={styles.signupTextContainer}>
                     <Text style={{color: 'white', letterSpacing: 0.8}}>Dont have an account yet? <Text style={{color:'steelblue'}}>SignUp!</Text> </Text>
                 </View>
+            </KeyboardAvoidingView> 
         </View>
         );
     }
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         marginTop: 100,
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'center',
     },
 
     button: {
