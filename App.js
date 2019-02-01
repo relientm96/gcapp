@@ -1,29 +1,38 @@
 import React from 'react'
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 
 import UserProfile from './screens/UserProfile';
 import LoginScreen from './screens/LoginScreen';
 
-export default class App extends React.Component {
-  render() {
-    return <AppContainer />;
-  }
-}
-
-const AppStackNavigator = createStackNavigator(
-  {
+//Stack of app navigation
+const AppStack = createStackNavigator(
+  { 
     User: {
       screen: UserProfile,
-    },
-    Login: { 
-      screen: LoginScreen,
-    }
-  },
-  {
-    initialRouteName : "Login"
+    },  
   }
 );
 
-const AppContainer = createAppContainer(AppStackNavigator);
+//Stack of authentication navigation flow
+const AuthStack = createStackNavigator(
+  { 
+    Login: {
+      screen: LoginScreen
+    }
+  },
+);
+
+//The Main App Container
+export default createAppContainer(createSwitchNavigator(
+  {
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    //Start at login screen
+    initialRouteName: 'Auth',
+  }
+));
+
 
 

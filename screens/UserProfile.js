@@ -7,10 +7,15 @@ class UserProfile extends React.Component {
         title: 'User',
     };
 
+    _signOutAsync = async () => {
+        this.props.navigation.navigate('Auth');
+      };
+
     render(){
         return (
         <View style={styles.container}>
             <Text>I am the user profile</Text>
+            <Button title="Actually, sign me out" onPress={this._signOutAsync} />
         </View>
         );
     }
