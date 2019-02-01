@@ -2,6 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 class UserProfile extends React.Component {
+
+    static navigationOptions = {
+        title: 'User',
+    };
+
     render(){
         return (
         <View style={styles.container}>

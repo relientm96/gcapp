@@ -7,24 +7,24 @@ class LoginScreen extends React.Component {
 
     static navigationOptions = {
         header: null,
+        title: 'Login',
     };
 
     render(){
         return (
         <View style={styles.container}>
-
-        <View style={styles.formContainer}>
-            <Form/>
-            <TouchableOpacity 
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('User')}    
-                >            
-                <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-        </View> 
-            <View style={styles.signupTextContainer}>
-                <Text style={{color: 'white'}}>Dont have an account yet? <Text style={{color:'steelblue'}}>SignUp!</Text> </Text>
-            </View>
+            <View style={styles.formContainer}>
+                <Form/>
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={() => this.props.navigation.navigate('User')}    
+                    >            
+                    <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+            </View> 
+                <View style={styles.signupTextContainer}>
+                    <Text style={{color: 'white', letterSpacing: 0.8}}>Dont have an account yet? <Text style={{color:'steelblue'}}>SignUp!</Text> </Text>
+                </View>
         </View>
         );
     }
@@ -42,17 +42,17 @@ const styles = StyleSheet.create({
     signupTextContainer: {
         flex: 1,
         flexDirection: 'column',
+        marginTop: 5,
     },
 
     formContainer: {
-        flex: 1,
+        flex: 2,
         marginTop: 100,
         flexDirection: 'column',
         alignItems: 'center',
     },
 
     button: {
-        marginTop:100,
         paddingTop: 10,
         width: 250,
         height: 40,

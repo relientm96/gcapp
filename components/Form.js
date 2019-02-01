@@ -1,34 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput} from 'react-native';
+
+import Logo from './Logo'
 
 class Form extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: ""
-      };
-    }
-
     render(){
         return (
         <View style={styles.container}>
-            <Image style={styles.logo} source={require('../assets/transparentcoah.png')}></Image>
-
+            <Logo></Logo>
             <View style={styles.textinputcontainer}>
                 <TextInput 
                     style={styles.textInput}
                     placeholder={'Email'} 
                     underlineColorAndroid='transparent'
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
                     /> 
                 <TextInput 
                     style={styles.textInput}
                     placeholder={'Password'} 
                     underlineColorAndroid='transparent'
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
                     /> 
             </View>
         </View>
@@ -46,12 +35,6 @@ const styles = StyleSheet.create({
       marginTop: 5,
     },
 
-    logo: {
-        width: 150,
-        height: 120,
-        padding: 10,
-    },
-
     textInput: {
       marginTop: 1,
       marginBottom: 3,
@@ -67,7 +50,7 @@ const styles = StyleSheet.create({
     },
 
     textinputcontainer: {
-        marginTop: 50,
+        marginTop: 5,
     }
 
 });
