@@ -18,6 +18,9 @@ export default class Greeting extends React.Component{
                 value={this.state.text}
                 underlineColorAndroid='transparent'
                 placeholder={this.props.customPlaceHolder}
+                keyboardType='email-address'
+                placeholderTextColor='grey'
+                selectionColor='white'
             />
             );
     }
@@ -32,10 +35,10 @@ const styles = StyleSheet.create({
       height: 40,
       fontSize: 15,
       marginVertical: 10,
-      color: 'rgba(255,255,255,0.35)',
-      opacity: 0.5,
+      color: 'white',
+      opacity: 0.6,
       borderRadius: 25,
-      backgroundColor: 'rgba(0,0,0,0.7)',
+      backgroundColor: 'rgba(0,0,0,0.6)',
       paddingLeft: 10,
       
     },
