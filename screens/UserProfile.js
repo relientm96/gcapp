@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage, Button} from 'react-native';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
+import { Container, Content, Header, Left, Body, Right, Icon } from 'native-base';
 
 class UserProfile extends React.Component {
 
@@ -10,22 +13,29 @@ class UserProfile extends React.Component {
 
     render(){
         return (
-        <View style={styles.container}>
-            <Text>I am the user profile</Text>
-            <Button title="Actually, sign me out" onPress={this._signOutAsync} />
-        </View>
+         <Container style={{marginTop: getStatusBarHeight()}} >
+
+            <Header style={{color: 'steelblue'}}>
+                <Left>
+                    <Icon name="menu" onPress={()=>this.props.navigation.openDrawer()}></Icon>
+                </Left>
+                <Body>
+                    <Text>User</Text>
+                </Body>
+            </Header>
+            
+            <Content contentContainerStyle={{
+                flex: 1, 
+                alignItems: 'center',
+                justifyContent: 'center',
+             }}>
+                <Text>User Profile</Text>
+                <Button title="Actually, sign me out" onPress={this._signOutAsync} />
+            </Content>
+
+        </Container>
         );
     }
 }
-
-const styles = StyleSheet.create({
-
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-});
 
 export default UserProfile

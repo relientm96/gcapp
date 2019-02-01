@@ -5,13 +5,16 @@ import MainScreen from '../screens/MainScreen';
 
 const HomeNavigator = createDrawerNavigator(
     { 
-        User: {
-            screen: UserProfile,
-        },  
         Main: {
             screen: MainScreen,
-        }
+        },
+        User: {
+            screen: UserProfile,
+        } 
     },
+    {
+        initialRouteName: 'Main',
+    }
 );
 
 export default HomeNavigator;
