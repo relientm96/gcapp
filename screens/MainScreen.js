@@ -1,22 +1,46 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, StatusBar} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { Container, Content, Header, Left, Body, Icon} from 'native-base';
+import { Container, Content, Header, Left, Body, Icon, Title, Button} from 'native-base';
 
 class MainScreen extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+        isReady: false
+        };
+    }  
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")
+        });
+        this.setState({ isReady: true });
+    }
 
     render(){
+
+        if (!this.state.isReady) {
+            return <Expo.AppLoading />;
+        }
+
         return (
 
         <Container style={{marginTop: getStatusBarHeight()}}>
 
-            <Header style={{color: 'steelblue'}}>
+            <Header style={{backgroundColor: 'steelblue'}}>
                 <Left>
+
+                <Button transparent>
                     <Icon name="menu" onPress={()=>this.props.navigation.openDrawer()}></Icon>
+                </Button>
+
                 </Left>
                 <Body>
-                    <Text> Main </Text>
+                    <Title>Main</Title>
                 </Body>
             </Header>
 
@@ -26,7 +50,7 @@ class MainScreen extends React.Component {
                 justifyContent: 'center',
             }}>
 
-            <Text>Main Screen!</Text>
+                <Text>Main Screen!</Text>
             </Content>
 
         </Container>
