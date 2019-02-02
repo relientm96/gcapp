@@ -2,7 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { Container, Content, Header, Left, Body, Icon, Title, Button, Card, CardItem} from 'native-base';
+import { Container, Content, Header, Left, Body, Icon, Title, Button, Card, CardItem, Footer} from 'native-base';
+
+import MyFooter from '../components/myFooter'
 
 class MainScreen extends React.Component {
     constructor() {
@@ -33,15 +35,7 @@ class MainScreen extends React.Component {
 
             <View style={{height: getStatusBarHeight(), backgroundColor: 'rgba(46, 85, 118, 1)'}}></View>
 
-            <Header style={{backgroundColor: 'steelblue'}}>
-
-                <Left style={{flexDirection: 'row'}}>
-
-                <Button transparent>
-                    <Icon name="menu" onPress={()=>this.props.navigation.openDrawer()}></Icon>
-                </Button>
-
-                </Left>
+            <Header style={{backgroundColor: 'steelblue', justifyContent:'center', alignItems:'center'}}>
 
                 <Body>
                     <Title>Gospel Community</Title>
@@ -91,6 +85,10 @@ class MainScreen extends React.Component {
                 </Content>
 
             </View>
+            
+            <Footer>
+                <MyFooter navigation={this.props.navigation}/>
+            </Footer>
 
         </Container>
 
