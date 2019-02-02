@@ -3,6 +3,7 @@ import { StyleSheet, Text, View} from 'react-native';
 
 import Logo from './Logo';
 import CustomTextInput from './CustomTextInput';
+import CustomPassInput from './CustomPassInput';
 
 class Form extends React.Component {
     render(){
@@ -13,7 +14,7 @@ class Form extends React.Component {
                 <CustomTextInput 
                     customPlaceHolder="Email" 
                     /> 
-                <CustomTextInput 
+                <CustomPassInput 
                     customPlaceHolder="Password" 
                     /> 
             </View>

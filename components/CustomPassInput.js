@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TextInput} from 'react-native';
 
-export default class EmailTextInput extends React.Component{
+export default class PasswordTextInput extends React.Component{
 
     constructor(props) {
         super(props);
@@ -18,7 +18,7 @@ export default class EmailTextInput extends React.Component{
                 value={this.state.text}
                 underlineColorAndroid='transparent'
                 placeholder={this.props.customPlaceHolder}
-                keyboardType='email-address'
+                secureTextEntry={true}
                 placeholderTextColor='grey'
                 selectionColor='white'
             />
