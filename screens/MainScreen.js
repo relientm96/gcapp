@@ -31,24 +31,29 @@ class MainScreen extends React.Component {
 
         return (
 
-        <Container>
+        <Container style={{backgroundColor:'skyblue'}}>
 
             <View style={{height: getStatusBarHeight(), backgroundColor: 'rgba(46, 85, 118, 1)'}}></View>
 
-            <Header style={{backgroundColor: 'steelblue', justifyContent:'center', alignItems:'center'}}>
+            <Header style={{backgroundColor: 'steelblue'}}>
 
-                <Body>
-                    <Title>Gospel Community</Title>
+                <Body style={{justifyContent:'center', alignItems:'center'}}>
+                    <Title >Gospel Community</Title>
                 </Body>
 
             </Header>
 
-            <View style={{flex: 1, backgroundColor:'rgba(123, 167, 204, 1)', justifyContent:'center', alignItems:'center'}}>
-                <Image style={{height: 100, width: 100, borderRadius: 50}} source={{uri: 'https://scontent.fkul8-1.fna.fbcdn.net/v/t1.0-9/16196015_10154888128487744_6901111466535510271_n.png?_nc_cat=103&_nc_ht=scontent.fkul8-1.fna&oh=0b30d1f322e3ca702c6b211b910ed6ce&oe=5CF4CDE9'}}/>
-                <Text styles={{color:'#ffffff'}}> Matthew Yong </Text>
+            <View style={{flex: 1, justifyContent:'center', alignItems:'center'}}>
+                <Card style={{flex:1, alignItems: 'center', alignSelf: 'stretch'}}>
+                        <CardItem>
+                            <Text>
+                                CardItem #1
+                            </Text>
+                        </CardItem>
+                </Card>
             </View>
 
-            <View style={{flex: 2, backgroundColor:'powderblue'}}>
+            <View style={{flex: 2}}>
 
                 <Content contentContainerStyle={{
                     flex: 1, 
@@ -60,7 +65,7 @@ class MainScreen extends React.Component {
                     <Card style={{flex:1, alignItems: 'center'}}>
                         <CardItem>
                             <Text>
-                                CardItem #1
+                                CardItem #2
                             </Text>
                         </CardItem>
                         <CardItem cardBody>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage, StatusBar} from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { Container, Content, Header, Left, Body, Right, Icon, Title, Button, Footer, FooterTab} from 'native-base';
+import { Container, Content, Header, Left, Body, Right, Icon, Title, Button, Footer} from 'native-base';
 
 import MyFooter from '../components/myFooter'
 
@@ -19,29 +19,45 @@ class UserProfile extends React.Component {
 
                 <View style={{height: getStatusBarHeight(), backgroundColor: 'rgba(46, 85, 118, 1)'}}></View>
 
-                <Header style={{backgroundColor: 'steelblue'}}>
-                    <Body>
+                <Header style={{backgroundColor:'steelblue'}}>
+                    <Left style={{flex:1}}>
+                        <Button transparent onPress={() => {this.props.navigation.navigate('Main');}}>
+                            <Icon name='arrow-back' />
+                        </Button>
+                    </Left>
+                    <Body style={{flex:1}}>
                         <Title>Profile</Title>
                     </Body>
+                    <Right style={{flex:1}}></Right>
                 </Header>
+
+                <View style={{flex: 1, backgroundColor:'rgba(123, 167, 204, 1)', justifyContent:'center', alignItems:'center'}}>
+                    <Image style={{height: 100, width: 100, borderRadius: 50}} source={{uri: 'https://scontent.fkul8-1.fna.fbcdn.net/v/t1.0-9/16196015_10154888128487744_6901111466535510271_n.png?_nc_cat=103&_nc_ht=scontent.fkul8-1.fna&oh=0b30d1f322e3ca702c6b211b910ed6ce&oe=5CF4CDE9'}}/>
+                    <Text styles={{color:'white'}}> Matthew Yong </Text>
+                </View>
+
+                <View style={{flex: 2, backgroundColor:'skyblue'}}>
+
+                    <Content contentContainerStyle={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                        <Text>User Profile</Text>
+                        <Button style={{
+                            justifyContent: 'center', 
+                            alignSelf:'center', 
+                            width: 100
+                        }} 
+                            onPress={this._signOutAsync}> 
+                            <Text style={{color: 'white'}}>Sign Out</Text> 
+                        </Button>
+
+                    </Content>
+
+                    
+                </View>
                 
-                <Content contentContainerStyle={{
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
-                    <Text>User Profile</Text>
-                    <Button style={{
-                        justifyContent: 'center', 
-                        alignSelf:'center', 
-                        width: 100
-                    }} 
-                        onPress={this._signOutAsync}> 
-                        <Text style={{color: 'white'}}>Sign Out</Text> 
-                    </Button>
-
-                </Content>
-
             <Footer>
                 <MyFooter navigation={this.props.navigation}/>
             </Footer>
