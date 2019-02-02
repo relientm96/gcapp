@@ -29,19 +29,24 @@ class MainScreen extends React.Component {
 
         return (
 
-        <Container style={{marginTop: getStatusBarHeight()}}>
+        <Container>
+
+            <View style={{height: getStatusBarHeight(), backgroundColor: 'rgba(46, 85, 118, 1)'}}></View>
 
             <Header style={{backgroundColor: 'steelblue'}}>
-                <Left>
+
+                <Left style={{flexDirection: 'row'}}>
 
                 <Button transparent>
                     <Icon name="menu" onPress={()=>this.props.navigation.openDrawer()}></Icon>
                 </Button>
 
                 </Left>
+
                 <Body>
-                    <Title>Main</Title>
+                    <Title>Gospel Community</Title>
                 </Body>
+
             </Header>
 
             <Content contentContainerStyle={{
