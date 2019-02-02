@@ -2,7 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { Container, Content, Header, Left, Body, Icon, Title, Button, Card, CardItem, Footer, FooterTab} from 'native-base';
+import { Container, Content, Header, Left, Body, Icon, Title, Button, Card, CardItem, Footer} from 'native-base';
+
+import MyFooter from '../components/myFooter'
 
 class MainScreen extends React.Component {
     constructor() {
@@ -83,26 +85,9 @@ class MainScreen extends React.Component {
                 </Content>
 
             </View>
-
+            
             <Footer>
-                <FooterTab style={{backgroundColor:'steelblue'}}>
-                    <Button vertical>
-                        <Icon name="apps" />
-                        <Text>Apps</Text>
-                    </Button>
-                    <Button vertical>
-                        <Icon name="camera" />
-                        <Text>Camera</Text>
-                    </Button>
-                    <Button vertical>
-                        <Icon active name="navigate" />
-                        <Text>Navigate</Text>
-                    </Button>
-                    <Button vertical >
-                        <Icon name="person" />
-                        <Text>Contact</Text>
-                    </Button>
-                </FooterTab>
+                <MyFooter navigation={this.props.navigation}/>
             </Footer>
 
         </Container>

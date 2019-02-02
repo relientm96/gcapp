@@ -2,7 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage, StatusBar} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { Container, Content, Header, Left, Body, Right, Icon, Title, Button} from 'native-base';
+import { Container, Content, Header, Left, Body, Right, Icon, Title, Button, Footer, FooterTab} from 'native-base';
+
+import MyFooter from '../components/myFooter'
 
 class UserProfile extends React.Component {
     _signOutAsync = async () => {
@@ -18,11 +20,6 @@ class UserProfile extends React.Component {
                 <View style={{height: getStatusBarHeight(), backgroundColor: 'rgba(46, 85, 118, 1)'}}></View>
 
                 <Header style={{backgroundColor: 'steelblue'}}>
-                    <Left style={{flexDirection: 'row'}}>
-                        <Button large transparent>
-                            <Icon name="menu" onPress={()=>this.props.navigation.openDrawer()}></Icon>
-                        </Button>                    
-                    </Left>
                     <Body>
                         <Title>Profile</Title>
                     </Body>
@@ -44,6 +41,10 @@ class UserProfile extends React.Component {
                     </Button>
 
                 </Content>
+
+            <Footer>
+                <MyFooter navigation={this.props.navigation}/>
+            </Footer>
 
             </Container>
 

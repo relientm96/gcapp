@@ -1,9 +1,9 @@
-import { createDrawerNavigator} from 'react-navigation';
+import { createStackNavigator} from 'react-navigation';
 
 import UserProfile from '../screens/UserProfile';
 import MainScreen from '../screens/MainScreen';
 
-const HomeNavigator = createDrawerNavigator(
+const HomeNavigator = createStackNavigator(
     { 
         Main: {
             screen: MainScreen,
@@ -14,6 +14,10 @@ const HomeNavigator = createDrawerNavigator(
     },
     {
         initialRouteName: 'Main',
+        headerMode: 'none',
+        navigationOptions: {
+            headerVisible: false,
+        }
     }
 );
 

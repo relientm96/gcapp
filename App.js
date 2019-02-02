@@ -9,8 +9,6 @@ import AuthLoadingScreen from './screens/AuthLoadingScreen';
 
 import HomeNavigator from './navigators/HomeNavigator';
 
-//Stack of app navigation
-
 //Stack of authentication navigation flow
 const AuthStack = createStackNavigator(
   { 
