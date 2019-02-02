@@ -49,14 +49,23 @@ class MainScreen extends React.Component {
 
             </Header>
 
-            <Content contentContainerStyle={{
-                flex: 1, 
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
+            <View style={{flex: 1, backgroundColor:'rgba(123, 167, 204, 1)'}}>
 
-                <Text>Main Screen!</Text>
-            </Content>
+            </View>
+
+            <View style={{flex: 2, backgroundColor:'powderblue'}}>
+
+                <Content contentContainerStyle={{
+                    flex: 1, 
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+
+                    <Text>Main Screen!</Text>
+
+                </Content>
+
+            </View>
 
         </Container>
 
