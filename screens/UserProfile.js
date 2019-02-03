@@ -2,8 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage, Image, SafeAreaView, Button} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import MyFooter from '../components/myFooter'
-
 class UserProfile extends React.Component {
 
     signOutAsync = async () => {

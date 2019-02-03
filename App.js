@@ -15,6 +15,7 @@ const AuthStack = createStackNavigator(
     Login: {
       screen: LoginScreen
     }
+    //TODO: Add Register (and Forgot Password) screens
   },
 );
 
