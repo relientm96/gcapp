@@ -29,19 +29,23 @@ const HomeNavigator = createMaterialTopTabNavigator(
     {
         initialRouteName: 'Main',
         order:['Main','User'],
+        swipeEnabled: true,
+        animationEnabled: false,
         tabBarOptions: {
-            activeTintColor: 'skyblue',
-            inactiveTintColor: 'grey',
+            activeTintColor: 'orange',
+            inactiveTintColor: 'white',
             style: {
                 backgroundColor: 'steelblue'
             },
             indicatorStyle: {
                 height: 0
             },
-            showIcon: true
-
-        }
+            showIcon: true,
+            showLabel: true,
+        },
+        tabBarPosition: 'bottom',
     }
+   
 );
 
 export default HomeNavigator;

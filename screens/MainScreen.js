@@ -10,29 +10,16 @@ class MainScreen extends React.Component {
         this.state = { loading: true };
     }  
 
-    async componentWillMount() {
-        await Expo.Font.loadAsync({
-            Roboto: require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")
-        });
-        this.setState({ loading: false });
-    }
-
     render(){
 
-        if (this.state.loading) {
-            return <Expo.AppLoading />;
-        }
-
         return (
+        <SafeAreaView style={{ flex:1, backgroundColor: 'skyblue' }}>  
 
-        <View style={{backgroundColor:'skyblue'}}>
+            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                <Text> Hi </Text>
+            </View>
 
-            <Text> Main </Text>
-
-        </View>
-
+        </SafeAreaView>
         );
     }
 
