@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
+import PrayerList from '../components/PrayerList';
+
 class PrayerScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -14,8 +16,10 @@ class PrayerScreen extends React.Component {
 
             <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
 
-            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-                <Text> Prayers </Text>
+            <View style={{flex:1}}>
+                
+                <PrayerList/>
+
             </View>
 
         </SafeAreaView>
