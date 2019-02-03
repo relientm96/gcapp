@@ -14,6 +14,8 @@ class UserProfile extends React.Component {
 
             <SafeAreaView style={{ flex:1 }}>
 
+                <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
+
                 <View style={{ flex:1 }}> 
 
                     <View style={{flex: 1, backgroundColor:'rgba(123, 167, 204, 1)', justifyContent:'center', alignItems:'center'}}>

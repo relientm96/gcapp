@@ -12,7 +12,9 @@ class MainScreen extends React.Component {
         return (
         <SafeAreaView style={{ flex:1, backgroundColor: 'skyblue' }}>  
 
-            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+            <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
+
+            <View style={{flex:1 , alignItems:'center'}}>
                 <Text> Main </Text>
             </View>
 

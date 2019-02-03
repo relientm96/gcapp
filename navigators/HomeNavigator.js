@@ -54,15 +54,21 @@ const HomeNavigator = createMaterialTopTabNavigator(
         initialRouteName: 'Main',
         order:['Main','Events','Prayers','User'],
         swipeEnabled: true,
-        animationEnabled: false,
+        animationEnabled: true,
         tabBarOptions: {
             activeTintColor: 'orange',
             inactiveTintColor: 'white',
             style: {
-                backgroundColor: 'steelblue'
+                backgroundColor: 'steelblue',
+                borderTopWidth: 0.5,
+                borderTopColor: 'grey',
             },
             indicatorStyle: {
                 height: 0
+            },
+            tabStyle: {
+                marginTop: 10,
+                height: 50,
             },
             showIcon: true,
             showLabel: true,
