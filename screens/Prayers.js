@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 class PrayerScreen extends React.Component {
