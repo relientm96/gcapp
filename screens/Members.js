@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-class MainScreen extends React.Component {
+class MemberScreen extends React.Component {
     constructor(props) {
         super(props);
     }  
@@ -12,10 +12,8 @@ class MainScreen extends React.Component {
         return (
         <SafeAreaView style={{ flex:1, backgroundColor: 'skyblue' }}>  
 
-            <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
-
-            <View style={{flex:1 , alignItems:'center'}}>
-                <Text> Main </Text>
+            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                <Text> Members </Text>
             </View>
 
         </SafeAreaView>
@@ -25,4 +23,4 @@ class MainScreen extends React.Component {
 }
 
 
-export default MainScreen
+export default MemberScreen
