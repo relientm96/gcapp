@@ -23,7 +23,7 @@ class UserProfile extends React.Component {
                         <Text styles={{color:'white'}}> Matthew Yong </Text>
                     </View>
 
-                    <View style={{flex: 2, backgroundColor:'skyblue'}}>
+                    <View style={{flex: 2, backgroundColor:'#e0e3e6'}}>
 
                         <Button onPress={this.signOutAsync}
                             title="Sign Out"
