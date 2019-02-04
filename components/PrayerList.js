@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
-
 import { List, ListItem, SearchBar } from 'react-native-elements'
 
 const list = [
@@ -32,13 +31,13 @@ class PrayerList extends React.Component {
     }
 
     makeRequest = () => {
-        const url = "https://gcapp-35747.firebaseio.com/gc_members.json";
+        const url = "https://react-native-gcapp.firebaseio.com/-LXstc3dEuV9Da-h3Ak2.json";
         this.setState({ loading: true });
         fetch(url)
         .then(response => response.json())
         .then(response => {
             this.setState({
-                data: response
+                data: response.prayerList
             })
             console.log(response);
         })
@@ -50,9 +49,9 @@ class PrayerList extends React.Component {
     renderRow ({ item }) {
         return (
           <ListItem
-            title={item.name}
-            subtitle={item.subtitle}
-            leftAvatar={<Image source={{ uri: item.avatar_url }} style={{borderRadius:30, height:50, width:50 }} />}
+            title={item.title}
+            subtitle={item.author}
+            //leftAvatar={<Image source={{ uri: item.avatar_url }} style={{borderRadius:30, height:50, width:50 }} />}
             />
         )
     }
@@ -88,12 +87,13 @@ class PrayerList extends React.Component {
             <View>
             {   
                 <FlatList
-                    data={list}
+                    data={this.state.data}
                     renderItem={this.renderRow}
                     keyExtractor={item => item.name}
                     ItemSeparatorComponent={this.renderSeperator}
                     ListHeaderComponent={this.renderHeader}
                     ListFooterComponent={this.renderFooter}
+                    keyExtractor={item => item.title}
                 />
             }
             </View>
