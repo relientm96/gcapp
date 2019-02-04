@@ -21,14 +21,15 @@ class PrayerList extends React.Component {
 
         this.state = {
             data: [],
-            loading: false
+            fulldata: [],
+            loading: false,
+            query: ''
         };
-
-    }
+    };
 
     componentDidMount() {
         this.makeRequest();
-    }
+    };
 
     makeRequest = () => {
         const url = "https://react-native-gcapp.firebaseio.com/-LXstc3dEuV9Da-h3Ak2.json";
@@ -37,24 +38,25 @@ class PrayerList extends React.Component {
         .then(response => response.json())
         .then(response => {
             this.setState({
-                data: response.prayerList
+                data: response.prayerList,
+                fulldata: response.prayerList
             })
-            console.log(response);
+            console.log(fulldata);
         })
         .catch(error => {
             this.setState({ error, loading: false});
         })
-    }
+    };
 
     renderRow ({ item }) {
         return (
           <ListItem
             title={item.title}
             subtitle={item.author}
-            //leftAvatar={<Image source={{ uri: item.avatar_url }} style={{borderRadius:30, height:50, width:50 }} />}
+            leftAvatar={<Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-native-gcapp.appspot.com/o/prayerPictures%2Fscenery.jpg?alt=media&token=847b9847-b3c7-44c6-b2c3-541e9e9330a2" }} style={{borderRadius:30, height:50, width:50 }} />}
             />
         )
-    }
+    };
     
     renderSeperator = () => {
         return(
@@ -63,14 +65,22 @@ class PrayerList extends React.Component {
                     height: 1,
                     width: '86%',
                     backgroundColor: '#CED0CE',
-                    marginLeft: '14%'
                 }}
             />
         );
     };
 
+    searchHandler = (text) => {
+        this.setState({ query: text });
+    };
+
     renderHeader = () => {
-        return <SearchBar placeholder="Search Prayers..."></SearchBar>
+        console.log(this.state.query);
+        return <SearchBar 
+            placeholder="Search Prayers..."
+            onChangeText={this.searchHandler}
+            value={this.state.query}
+            />
     };
 
     renderFooter = () =>{
@@ -83,7 +93,6 @@ class PrayerList extends React.Component {
 
     render(){       
         return (
-
             <View>
             {   
                 <FlatList
@@ -97,7 +106,6 @@ class PrayerList extends React.Component {
                 />
             }
             </View>
-
         );
     }
 }
