@@ -1,19 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
-import { List, ListItem, SearchBar, Icon } from 'react-native-elements'
+import { List, ListItem, SearchBar, Icon } from 'react-native-elements';
+import { createStackNavigator, withNavigation } from 'react-navigation';
 
-const list = [
-    {
-      name: 'Prayer #1',
-      avatar_url: "https://firebasestorage.googleapis.com/v0/b/gcapp-35747.appspot.com/o/profileImages%2Fmatthewyfy?alt=media&token=eb98b6e8-29d4-475e-98bd-a35bd2666be3",
-      subtitle: 'Matthew Yong'
-    },
-    {
-      name: 'Prayer #2',
-      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-      subtitle: 'Yong Chor Hon'
-    },
-]
+import PrayerDetail from '../screens/PrayerDetailScreen';
 
 class PrayerList extends React.Component {
     constructor(props){
@@ -48,17 +38,14 @@ class PrayerList extends React.Component {
         })
     };
 
-    prayerHandler(){
-        console.log("Prayer Item Pressed!");
-    };
-
     renderRow ({ item }) {
         return (
           <ListItem
             title={item.title}
             subtitle={item.author}
             leftAvatar={<Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-native-gcapp.appspot.com/o/prayerPictures%2Fscenery.jpg?alt=media&token=847b9847-b3c7-44c6-b2c3-541e9e9330a2" }} style={{borderRadius:30, height:50, width:50 }} />}
-            rightIcon={<Icon name='chevron-right' type='material-community' onPress={this.prayerHandler}/>}
+            rightIcon={<Icon name='chevron-right' type='material-community'/>}
+            onPress={() => this.props.navigation.navigate('PrayerDetail')}
             />
         )
     };
@@ -125,6 +112,6 @@ class PrayerList extends React.Component {
     }
 }
 
-export default PrayerList
+export default withNavigation(PrayerList)
 
 

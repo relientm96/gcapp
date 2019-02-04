@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { createMaterialTopTabNavigator} from 'react-navigation'
+import { createMaterialTopTabNavigator, createStackNavigator} from 'react-navigation'
 import {Icon} from 'native-base';
 
 //Screens
@@ -10,6 +10,7 @@ import UserProfile from '../screens/UserProfile';
 import MainScreen from '../screens/MainScreen';
 import EventScreen from '../screens/Events';
 import PrayerScreen from '../screens/Prayers';
+import PrayerDetail from '../screens/PrayerDetailScreen';
 
 const HomeNavigator = createMaterialTopTabNavigator(
     { 
@@ -31,8 +32,11 @@ const HomeNavigator = createMaterialTopTabNavigator(
                 )
             }
         },
-        Prayers: {
-            screen: PrayerScreen,
+        Prayers: { 
+            screen: createStackNavigator({
+                PrayerListPage: { screen: PrayerScreen },
+                PrayerDetailsPage: { screen: PrayerDetail},
+            }), 
             navigationOptions:{
                 tabBarLabel: 'Prayers',
                 tabBarIcon: ({tintColor})=>(

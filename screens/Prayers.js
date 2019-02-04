@@ -18,7 +18,7 @@ class PrayerScreen extends React.Component {
 
             <View style={{flex:1}}>
                 
-                <PrayerList/>
+                <PrayerList navigation={this.props.navigation}/>
 
             </View>
 
@@ -27,6 +27,5 @@ class PrayerScreen extends React.Component {
     }
 
 }
-
 
 export default PrayerScreen
