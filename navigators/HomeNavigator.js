@@ -18,7 +18,7 @@ const HomeNavigator = createMaterialTopTabNavigator(
             navigationOptions:{
                 tabBarLabel: 'Home',
                 tabBarIcon: ({tintColor})=>(
-                    <Icon name="home" color={tintColor} size={24}/>
+                    <Icon style={{color: "white"}} name="home" color={tintColor} size={24}/>
                 )
             }
         },
@@ -27,7 +27,7 @@ const HomeNavigator = createMaterialTopTabNavigator(
             navigationOptions:{
                 tabBarLabel: 'Profile',
                 tabBarIcon: ({tintColor})=>(
-                    <Icon name="person" color={tintColor} size={24}/>
+                    <Icon style={{color: "white"}} name="person" color={tintColor} size={24}/>
                 )
             }
         },
@@ -36,7 +36,7 @@ const HomeNavigator = createMaterialTopTabNavigator(
             navigationOptions:{
                 tabBarLabel: 'Prayers',
                 tabBarIcon: ({tintColor})=>(
-                    <Icon name="hand" color={tintColor} size={24}/>
+                    <Icon style={{color: "white"}} name="hand" color={tintColor} size={24}/>
                 )
             }
         }, 
@@ -45,7 +45,7 @@ const HomeNavigator = createMaterialTopTabNavigator(
             navigationOptions:{
                 tabBarLabel: 'Events',
                 tabBarIcon: ({tintColor})=>(
-                    <Icon name="calendar" color={tintColor} size={24}/>
+                    <Icon style={{color: "white"}} name="calendar" color={tintColor} size={24}/>
                 )
             }
         }  

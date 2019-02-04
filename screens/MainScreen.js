@@ -14,7 +14,7 @@ class MainScreen extends React.Component {
 
             <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
 
-            <View style={{flex:1 , alignItems:'center'}}>
+            <View style={{flex:1 , justifyContent:'center', alignItems:'center'}}>
                 <Text> Main </Text>
             </View>
 
