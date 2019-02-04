@@ -10,7 +10,7 @@ class EventScreen extends React.Component {
     render(){
 
         return (
-        <SafeAreaView style={{ flex:1, backgroundColor: '#e0e3e6' }}>  
+        <SafeAreaView style={{ flex:1, backgroundColor: 'white' }}>  
 
             <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
             

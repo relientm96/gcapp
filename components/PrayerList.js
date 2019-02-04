@@ -63,7 +63,7 @@ class PrayerList extends React.Component {
             <View
                 style={{
                     height: 1,
-                    width: '86%',
+                    width: '100%',
                     backgroundColor: '#CED0CE',
                 }}
             />
