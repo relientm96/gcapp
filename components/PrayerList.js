@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Image} from 'react-native';
 
 import { List, ListItem } from 'react-native-elements'
 
@@ -21,7 +21,7 @@ class PrayerList extends React.Component {
         super(props);
 
         this.state = {
-            dataSource: [],
+            data: [],
             loading: false
         };
 
@@ -38,9 +38,9 @@ class PrayerList extends React.Component {
         .then(response => response.json())
         .then(response => {
             this.setState({
-                dataSource: response
+                data: response
             })
-            console.log(dataSource);
+            console.log(response);
         })
         .catch(error => {
             this.setState({ error, loading: false});
@@ -50,13 +50,25 @@ class PrayerList extends React.Component {
     renderRow ({ item }) {
         return (
           <ListItem
-            roundAvatar
             title={item.name}
-            subtitle={item.email}
-            avatar={{uri:item.photolink}}
-          />
+            subtitle={item.subtitle}
+            leftAvatar={<Image source={{ uri: item.avatar_url }} style={{borderRadius:30, height:50, width:50 }} />}
+            />
         )
       }
+    
+    renderSeperator = () => {
+        return(
+            <View
+                style={{
+                    height: 1,
+                    width: '86%',
+                    backgroundColor: '#CED0CE',
+                    marginLeft: '14%'
+                }}
+            />
+        );
+    };
 
     render(){       
         return (
@@ -64,9 +76,10 @@ class PrayerList extends React.Component {
             <View>
             {   
                 <FlatList
-                data={this.state.dataSource}
-                renderItem={this.renderRow}
-                keyExtractor={item => item.name}
+                    data={list}
+                    renderItem={this.renderRow}
+                    keyExtractor={item => item.name}
+                    ItemSeparatorComponent={this.renderSeperator}
                 />
             }
             </View>
