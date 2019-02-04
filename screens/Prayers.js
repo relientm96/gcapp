@@ -12,7 +12,7 @@ class PrayerScreen extends React.Component {
     render(){
 
         return (
-        <SafeAreaView style={{ flex:1, backgroundColor: 'skyblue' }}>  
+        <SafeAreaView style={{ flex:1, backgroundColor: '#e0e3e6' }}>  
 
             <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
 
