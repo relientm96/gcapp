@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Image} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
 
-import { List, ListItem } from 'react-native-elements'
+import { List, ListItem, SearchBar } from 'react-native-elements'
 
 const list = [
     {
@@ -55,7 +55,7 @@ class PrayerList extends React.Component {
             leftAvatar={<Image source={{ uri: item.avatar_url }} style={{borderRadius:30, height:50, width:50 }} />}
             />
         )
-      }
+    }
     
     renderSeperator = () => {
         return(
@@ -70,6 +70,18 @@ class PrayerList extends React.Component {
         );
     };
 
+    renderHeader = () => {
+        return <SearchBar placeholder="Search Prayers..."></SearchBar>
+    };
+
+    renderFooter = () =>{
+        return (
+            <View style={{paddingVertical: 20, borderTopWidth: 1, borderTopColor: '#CED0CE'}}>
+                <ActivityIndicator animating size="large"/>
+            </View>
+        );
+    };
+
     render(){       
         return (
 
@@ -80,6 +92,8 @@ class PrayerList extends React.Component {
                     renderItem={this.renderRow}
                     keyExtractor={item => item.name}
                     ItemSeparatorComponent={this.renderSeperator}
+                    ListHeaderComponent={this.renderHeader}
+                    ListFooterComponent={this.renderFooter}
                 />
             }
             </View>
