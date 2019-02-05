@@ -9,8 +9,7 @@ import {Icon} from 'native-base';
 import UserProfile from '../screens/UserProfile';
 import MainScreen from '../screens/MainScreen';
 import EventScreen from '../screens/Events';
-import PrayerScreen from '../screens/Prayers';
-import PrayerDetail from '../screens/PrayerDetailScreen';
+import PrayerStack from '../navigators/PrayerNavigator';
 
 const HomeNavigator = createMaterialTopTabNavigator(
     { 
@@ -33,10 +32,7 @@ const HomeNavigator = createMaterialTopTabNavigator(
             }
         },
         Prayers: { 
-            screen: createStackNavigator({
-                PrayerListPage: { screen: PrayerScreen },
-                PrayerDetailsPage: { screen: PrayerDetail},
-            }), 
+            screen: PrayerStack,
             navigationOptions:{
                 tabBarLabel: 'Prayers',
                 tabBarIcon: ({tintColor})=>(

@@ -1,24 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import PrayerList from '../components/PrayerList';
+import PrayerDetail from '../screens/PrayerDetailScreen';
 
 class PrayerScreen extends React.Component {
     constructor(props) {
         super(props);
     }  
 
+    static navigationOptions = { header: null };
+
     render(){
 
         return (
-        <SafeAreaView style={{ flex:1, backgroundColor: '#e6e6e6'}}>  
+        <SafeAreaView navigation={this.props.navigation} style={{ flex:1, backgroundColor: '#e6e6e6'}}>  
 
             <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
 
             <View style={{flex:1}}>
                 
-                <PrayerList navigation={this.props.navigation}/>
+                <PrayerList/>
+
+                <Button title="Test Prayer" onPress={() => this.props.navigation.navigate('PrayerDetail')}>  </Button>
 
             </View>
 

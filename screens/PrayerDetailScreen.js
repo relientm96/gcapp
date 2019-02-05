@@ -6,14 +6,7 @@ class PrayerDetail extends React.Component {
     constructor(props) {
         super(props);
     }  
-
-    static navigationOptions = ({navigation}) => {
-        const {state, navigate} = navigation;
-        return {
-            title: "",
-        };
-    };
-
+    
     render(){
 
         return (

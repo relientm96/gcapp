@@ -45,7 +45,6 @@ class PrayerList extends React.Component {
             subtitle={item.author}
             leftAvatar={<Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-native-gcapp.appspot.com/o/prayerPictures%2Fscenery.jpg?alt=media&token=847b9847-b3c7-44c6-b2c3-541e9e9330a2" }} style={{borderRadius:30, height:50, width:50 }} />}
             rightIcon={<Icon name='chevron-right' type='material-community'/>}
-            onPress={() => this.props.navigation.navigate('PrayerDetail')}
             />
         )
     };
