@@ -55,8 +55,9 @@ const HomeNavigator = createMaterialTopTabNavigator(
         order:['Main','Events','Prayers','User'],
         swipeEnabled: true,
         animationEnabled: true,
+        optimizationsEnabled: true,
         tabBarOptions: {
-            activeTintColor: 'orange',
+            activeTintColor: 'white',
             inactiveTintColor: 'white',
             style: {
                 backgroundColor: 'steelblue',
