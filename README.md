@@ -1,0 +1,9 @@
+# Social Media Group Application  (Still Developing)
+Built using React Native
+
+This App lets you and your church group:
+1. Organize events together
+2. Post prayers and details about it
+3. Get latest bible study materials (To be added)
+
+
