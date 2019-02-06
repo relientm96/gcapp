@@ -56,8 +56,7 @@ class MainScreen extends React.Component {
                                     Though it is one of easiest books to read, 
                                     John is also one of the most profound books to understand. 
                                     Let veteran Bible teacher and pastor, Dr. J. Vernon McGee 
-                                    lead you through the entire book in these 21 summaries 
-                                    from Thru the Bible’s tried and trusted five year study.
+                                    lead you through the entire book in these 21 summaries.
                                     </Text>
                                 </Body>
                                 </CardItem>

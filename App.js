@@ -7,22 +7,13 @@ import {
 import LoginScreen from './screens/LoginScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 
-import HomeNavigator from './navigators/HomeNavigator';
-
-//Stack of authentication navigation flow
-const AuthStack = createStackNavigator(
-  { 
-    Login: {
-      screen: LoginScreen
-    }
-    //TODO: Add Register (and Forgot Password) screens
-  },
-);
+import AppNavigator from './navigators/HomeNavigator';
+import AuthStack from './navigators/AuthNavigatior';
 
 //The Main App Container
 export default createAppContainer(createSwitchNavigator(
   {
-    App: HomeNavigator,
+    App: AppNavigator,
     Auth: AuthStack,
     AuthLoading: AuthLoadingScreen,
   },
