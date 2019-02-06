@@ -13,6 +13,10 @@ class MainScreen extends React.Component {
         };
     }  
 
+    static navigationOptions = {
+        header: null,
+    };
+
     async componentWillMount() {
        await Font.loadAsync({
           Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -38,7 +42,7 @@ class MainScreen extends React.Component {
 
                 <View style={{flex:1}}>
 
-                    <View style={{flex:2}} >
+                    <View style={{flex:3}} >
                         <Container>
                             <Header>
                                 <Body>
@@ -68,7 +72,7 @@ class MainScreen extends React.Component {
                         </Container>
                     </View>
 
-                    <View style={{flex:1}}>
+                    <View style={{flex:2}}>
                     <Container>
                             <Header>
                                 <Body>

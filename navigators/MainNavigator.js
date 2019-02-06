@@ -7,9 +7,6 @@ const HomeStack = createStackNavigator({
     Home:{
         screen: MainScreen
     },
-    BibleStudy:{
-        
-    }
 });
 
 export default HomeStack;
