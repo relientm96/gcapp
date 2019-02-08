@@ -1,7 +1,6 @@
 /*Navigation for app*/
 
 import React from 'react'
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createMaterialTopTabNavigator, createStackNavigator} from 'react-navigation'
 import {Icon} from 'native-base';
 
@@ -10,11 +9,12 @@ import UserProfile from '../screens/UserProfile';
 import MainScreen from '../screens/MainScreen';
 import EventScreen from '../screens/Events';
 import PrayerStack from '../navigators/PrayerNavigator';
+import HomeStack from '../navigators/MainNavigator';
 
-const HomeNavigator = createMaterialTopTabNavigator(
+const AppNavigator = createMaterialTopTabNavigator(
     { 
         Main: {
-            screen: MainScreen,
+            screen: HomeStack,
             navigationOptions:{
                 tabBarLabel: 'Home',
                 tabBarIcon: ({tintColor})=>(
@@ -55,8 +55,9 @@ const HomeNavigator = createMaterialTopTabNavigator(
         order:['Main','Events','Prayers','User'],
         swipeEnabled: true,
         animationEnabled: true,
+        optimizationsEnabled: true,
         tabBarOptions: {
-            activeTintColor: 'orange',
+            activeTintColor: 'white',
             inactiveTintColor: 'white',
             style: {
                 backgroundColor: 'steelblue',
@@ -78,6 +79,6 @@ const HomeNavigator = createMaterialTopTabNavigator(
    
 );
 
-export default HomeNavigator;
+export default AppNavigator;
 
   

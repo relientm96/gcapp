@@ -1,28 +1,50 @@
+import React from 'react';
 import { 
   createSwitchNavigator, 
-  createStackNavigator, 
   createAppContainer,
 } from 'react-navigation';
 
-import LoginScreen from './screens/LoginScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
+//Navigators
+import AppNavigator from './navigators/HomeNavigator';
+import AuthStack from './navigators/AuthNavigatior';
 
-import HomeNavigator from './navigators/HomeNavigator';
+/** App Navigation Structure
+ * 
+ * App (Main Application)
+ *              -> Home
+ *                  -> Bible Study Details 
+ *                  -> Verse Details
+ *              -> Events
+ *                  -> Event Picture View
+ *                  -> Event Calendar View
+ *              -> Prayers
+ *                  -> Prayer List View
+ *                      -> Individual Prayer List Item Details
+ *              -> Profile
+ *                  Tab View:
+ *                  -> Main Profile View (With settings)
+ *                  -> Members List
+ * Authentication 
+ *              -> Login
+ *              -> Register
+ *              -> Forgot Password
+ * 
+ * Auth Loading Screen (While loading between authentication and app)
+ * 
+ * 
+ */
 
-//Stack of authentication navigation flow
-const AuthStack = createStackNavigator(
-  { 
-    Login: {
-      screen: LoginScreen
-    }
-    //TODO: Add Register (and Forgot Password) screens
-  },
-);
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
 
 //The Main App Container
-export default createAppContainer(createSwitchNavigator(
+const ApplicationNavigator = createAppContainer(createSwitchNavigator(
   {
-    App: HomeNavigator,
+    App: AppNavigator,
     Auth: AuthStack,
     AuthLoading: AuthLoadingScreen,
   },
@@ -31,6 +53,8 @@ export default createAppContainer(createSwitchNavigator(
     initialRouteName: 'Auth',
   }
 ));
+
+const AppContainer = createAppContainer(ApplicationNavigator);
 
 
 

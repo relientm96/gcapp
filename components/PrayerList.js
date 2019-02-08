@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
-import { List, ListItem, SearchBar, Icon } from 'react-native-elements';
+import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
+import { List, ListItem, SearchBar, Icon, Button } from 'react-native-elements';
 import { createStackNavigator, withNavigation } from 'react-navigation';
 
 import PrayerDetail from '../screens/PrayerDetailScreen';
@@ -11,16 +11,32 @@ class PrayerList extends React.Component {
 
         this.state = {
             data: [],
-            fulldata: [],
             loading: false,
             query: ''
         };
     };
 
     componentDidMount() {
+        console.log('component did mount');
         this.makeRequest();
     };
 
+    async makeRequest() {
+        const url = "https://react-native-gcapp.firebaseio.com/gc1/-LYCGzCe_qKyeRV30xQA.json";
+        try {
+          const response = await fetch(url);
+          const responseJSON = await response.json();
+    
+          this.setState({ data: responseJSON.prayerList }, () => {
+            console.log("Prayer List - getCollection() State Updated", this.state);
+          });
+    
+        } catch (error) {
+          console.log("Prayer List - getCollection() error", error);
+        }
+    };
+
+    /*
     makeRequest = () => {
         const url = "https://react-native-gcapp.firebaseio.com/-LXstc3dEuV9Da-h3Ak2.json";
         this.setState({ loading: true });
@@ -31,22 +47,16 @@ class PrayerList extends React.Component {
                 data: response.prayerList,
                 fulldata: response.prayerList
             })
-            console.log(fulldata);
+            console.log(response);
+            console.log(this.state.loading);
         })
         .catch(error => {
             this.setState({ error, loading: false});
         })
-    };
+    };*/
 
-    renderRow ({ item }) {
-        return (
-          <ListItem
-            title={item.title}
-            subtitle={item.author}
-            leftAvatar={<Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-native-gcapp.appspot.com/o/prayerPictures%2Fscenery.jpg?alt=media&token=847b9847-b3c7-44c6-b2c3-541e9e9330a2" }} style={{borderRadius:30, height:50, width:50 }} />}
-            rightIcon={<Icon name='chevron-right' type='material-community'/>}
-            />
-        )
+    toPrayerDetail = () => {
+        console.log('Detail Screen');
     };
     
     renderSeperator = () => {
@@ -98,12 +108,24 @@ class PrayerList extends React.Component {
             {   
                 <FlatList
                     data={this.state.data}
-                    renderItem={this.renderRow}
+                    renderItem={({ item }) => (
+
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')}>
+                            <ListItem
+                            title={item.title}
+                            subtitle={item.author}
+                            leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
+                            rightIcon={<Icon name='chevron-right' type='material-community'/>}
+                            />
+                      </TouchableOpacity>
+
+                    )}
                     keyExtractor={item => item.name}
                     ItemSeparatorComponent={this.renderSeperator}
                     ListHeaderComponent={this.renderHeader}
                     ListFooterComponent={this.renderFooter}
                     keyExtractor={item => item.title}
+                    navigation={this.props.navigation}
                 />
             }
             </View>
