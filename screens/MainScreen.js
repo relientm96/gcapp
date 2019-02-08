@@ -35,6 +35,7 @@ class MainScreen extends React.Component {
             )
         }
         else {
+            //Limit to 130charcters for nice layout, anymore ask them to click on it for more details (For Verse)
             return (
             <SafeAreaView style={{ flex:1, backgroundColor: 'white' }}>  
 
@@ -88,7 +89,7 @@ class MainScreen extends React.Component {
                                 <Body>
                                     <Text>
                                     “If your brother or sister sins, go and point out their fault, just between the two of you. 
-                                    If they listen to you, you have won them over.
+                                    If they listen to you, you have won.dd
                                     </Text>
                                 </Body>
                                 </CardItem>

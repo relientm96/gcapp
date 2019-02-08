@@ -3,6 +3,8 @@ import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navig
 import EventScreen from '../screens/Events';
 import EventCalendar from '../screens/EventCalendar';
 
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 const EventStack = createMaterialTopTabNavigator(
     {
         EventMain:{
@@ -13,7 +15,24 @@ const EventStack = createMaterialTopTabNavigator(
         }
     },
     {
-    initialRouteName: 'EventMain'
+    initialRouteName: 'EventMain',
+    tabBarOptions: {
+        activeTintColor: 'white',
+        inactiveTintColor: 'white',
+        style: {
+            backgroundColor: 'steelblue',
+            borderTopWidth: 0.5,
+            borderTopColor: 'grey',
+        },
+        indicatorStyle: {
+            height: 0
+        },
+        tabStyle: {
+            marginTop: getStatusBarHeight(),
+        },
+        showIcon: true,
+        showLabel: true,
+    },
     }
 );
 

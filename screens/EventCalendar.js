@@ -10,9 +10,7 @@ class EventCalendar extends React.Component {
     render(){
 
         return (
-        <SafeAreaView style={{ flex:1, backgroundColor: 'white' }}>  
-
-            <View style={{height:getStatusBarHeight(), backgroundColor: 'steelblue'}}/> 
+        <View style={{ flex:1, backgroundColor: 'white' }}>  
             
             <View style={{flex:1}}>
 
@@ -25,7 +23,7 @@ class EventCalendar extends React.Component {
             
             </View>
 
-        </SafeAreaView>
+        </View>
         );
     }
 
