@@ -33,33 +33,13 @@ class EventScreen extends React.Component {
             
             <View style={{flex:1}}>
 
-                <Container>
-                        <View>
-                        <DeckSwiper
-                            dataSource={cards}
-                            renderItem={item =>
-                            <Card style={{ elevation: 3 }}>
-                                <CardItem>
-                                <Left>
-                                    <Thumbnail source={item.image} />
-                                    <Body>
-                                    <Text>{item.text}</Text>
-                                    <Text note>NativeBase</Text>
-                                    </Body>
-                                </Left>
-                                </CardItem>
-                                <CardItem cardBody>
-                                <Image style={{ height: 300, flex: 1 }} source={{uri: "https://firebasestorage.googleapis.com/v0/b/react-native-gcapp.appspot.com/o/prayerPictures%2Fscenery.jpg?alt=media&token=847b9847-b3c7-44c6-b2c3-541e9e9330a2"}} />
-                                </CardItem>
-                                <CardItem>
-                                <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                                <Text>{item.name}</Text>
-                                </CardItem>
-                            </Card>
-                            }
-                        />
-                        </View>
-                </Container>
+                <View style={{flex:1, backgroundColor: 'powderblue'}}>
+
+                </View>    
+
+                <View style={{flex:2, backgroundColor: 'skyblue'}}>
+
+                </View>
                 
             
             </View>

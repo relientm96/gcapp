@@ -11,7 +11,6 @@ class PrayerList extends React.Component {
 
         this.state = {
             data: [],
-            fulldata: [],
             loading: false,
             query: ''
         };
