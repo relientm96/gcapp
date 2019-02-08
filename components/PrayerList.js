@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
 import { List, ListItem, SearchBar, Icon, Button } from 'react-native-elements';
 import { createStackNavigator, withNavigation } from 'react-navigation';
 
@@ -56,20 +56,8 @@ class PrayerList extends React.Component {
         })
     };*/
 
-    listItemBtn = () => {
-        console.log('Prayer Item Pressed');
-    };
-
-    renderRow ({ item }) {
-        return (
-          <ListItem
-            title={item.title}
-            subtitle={item.author}
-            leftAvatar={<Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-native-gcapp.appspot.com/o/prayerPictures%2Fscenery.jpg?alt=media&token=847b9847-b3c7-44c6-b2c3-541e9e9330a2" }} style={{borderRadius:30, height:50, width:50 }} />}
-            rightIcon={<Icon name='chevron-right' type='material-community'/>}
-            onPress={this.listItemBtn}
-            />
-        )
+    toPrayerDetail = () => {
+        console.log('Detail Screen');
     };
     
     renderSeperator = () => {
@@ -121,14 +109,27 @@ class PrayerList extends React.Component {
             {   
                 <FlatList
                     data={this.state.data}
-                    renderItem={this.renderRow}
+                    renderItem={({ item }) => (
+
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')}>
+                            <ListItem
+                            title={item.title}
+                            subtitle={item.author}
+                            leftAvatar={<Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-native-gcapp.appspot.com/o/prayerPictures%2Fscenery.jpg?alt=media&token=847b9847-b3c7-44c6-b2c3-541e9e9330a2" }} style={{borderRadius:30, height:50, width:50 }} />}
+                            rightIcon={<Icon name='chevron-right' type='material-community'/>}
+                            />
+                      </TouchableOpacity>
+
+                    )}
                     keyExtractor={item => item.name}
                     ItemSeparatorComponent={this.renderSeperator}
                     ListHeaderComponent={this.renderHeader}
                     ListFooterComponent={this.renderFooter}
                     keyExtractor={item => item.title}
+                    navigation={this.props.navigation}
                 />
             }
+            <Button title="Navigate" onPress={() => this.props.navigation.navigate('DetailScreen')}> </Button>
             </View>
         );
     }
