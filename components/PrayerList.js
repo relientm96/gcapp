@@ -23,7 +23,7 @@ class PrayerList extends React.Component {
     };
 
     async makeRequest() {
-        const url = "https://react-native-gcapp.firebaseio.com/-LXstc3dEuV9Da-h3Ak2.json";
+        const url = "https://react-native-gcapp.firebaseio.com/gc1/-LYCGzCe_qKyeRV30xQA.json";
         try {
           const response = await fetch(url);
           const responseJSON = await response.json();
@@ -115,7 +115,7 @@ class PrayerList extends React.Component {
                             <ListItem
                             title={item.title}
                             subtitle={item.author}
-                            leftAvatar={<Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/react-native-gcapp.appspot.com/o/prayerPictures%2Fscenery.jpg?alt=media&token=847b9847-b3c7-44c6-b2c3-541e9e9330a2" }} style={{borderRadius:30, height:50, width:50 }} />}
+                            leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
                             rightIcon={<Icon name='chevron-right' type='material-community'/>}
                             />
                       </TouchableOpacity>
@@ -129,7 +129,6 @@ class PrayerList extends React.Component {
                     navigation={this.props.navigation}
                 />
             }
-            <Button title="Navigate" onPress={() => this.props.navigation.navigate('DetailScreen')}> </Button>
             </View>
         );
     }
