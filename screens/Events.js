@@ -34,7 +34,6 @@ class EventScreen extends React.Component {
             <View style={{flex:1}}>
 
                 <Container>
-                    <Header />
                         <View>
                         <DeckSwiper
                             dataSource={cards}
@@ -61,6 +60,7 @@ class EventScreen extends React.Component {
                         />
                         </View>
                 </Container>
+                
             
             </View>
 

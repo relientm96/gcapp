@@ -21,9 +21,9 @@ class PrayerScreen extends React.Component {
 
             <View style={{flex:1}}>
                 
-                <PrayerList/>
+                <PrayerList navigation={this.navigation}/>
 
-                <Button title="Test Prayer" onPress={() => this.props.navigation.navigate('PrayerDetail')}>  </Button>
+                <Button title="Test Prayer" onPress={ () => this.props.navigation.navigate('Auth')}>  </Button>
 
             </View>
 
