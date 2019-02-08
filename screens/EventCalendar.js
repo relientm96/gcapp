@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Image, SafeAreaView} from 'react-native';
+import { View, Image, SafeAreaView, Text} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-
 
 class EventCalendar extends React.Component {
     constructor(props) {
@@ -17,7 +16,11 @@ class EventCalendar extends React.Component {
             
             <View style={{flex:1}}>
 
-              <View> Calendar View </View>
+              <View> 
+                  <Text> 
+                      Calendar View  
+                  </Text>
+              </View>
                 
             
             </View>

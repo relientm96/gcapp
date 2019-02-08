@@ -8,8 +8,11 @@ import {Icon} from 'native-base';
 import UserProfile from '../screens/UserProfile';
 import MainScreen from '../screens/MainScreen';
 import EventScreen from '../screens/Events';
+
+//Navigators
 import PrayerStack from '../navigators/PrayerNavigator';
 import HomeStack from '../navigators/MainNavigator';
+import EventStack from '../navigators/EventNavigator';
 
 const AppNavigator = createMaterialTopTabNavigator(
     { 
@@ -41,7 +44,7 @@ const AppNavigator = createMaterialTopTabNavigator(
             }
         }, 
         Events: {
-            screen: EventScreen,
+            screen: EventStack,
             navigationOptions:{
                 tabBarLabel: 'Events',
                 tabBarIcon: ({tintColor})=>(
