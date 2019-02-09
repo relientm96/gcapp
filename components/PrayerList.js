@@ -15,7 +15,7 @@ class PrayerList extends React.Component {
     };
 
     componentDidMount() {
-        console.log('component did mount');
+        console.log('PrayerList did mount');
         this.makeRequest();
     };
 
@@ -38,7 +38,7 @@ class PrayerList extends React.Component {
                     answered: responseJSON[key].answered,
                     id: key
                 })
-                    console.log("Data " + key + " has value: " + responseJSON[key].author + " inserted!");
+                    console.log("Prayer " + key + " has value: " + responseJSON[key].author + " inserted!");
             }
             //Successful data fetching, update state of component
             this.setState({

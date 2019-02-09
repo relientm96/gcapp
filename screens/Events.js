@@ -4,6 +4,8 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { Container, Header, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon } from 'native-base';
 
+import EventSwiper from '../components/EventSwiper';
+
 //Todo: Use DECK Swiper from nativebase : http://docs.nativebase.io/Components.html#deckswiper-def-headref
 
 const cards = [
@@ -32,7 +34,7 @@ class EventScreen extends React.Component {
             <View style={{flex:1}}>
 
                 <View style={{flex:1, backgroundColor: 'powderblue'}}>
-
+                 <EventSwiper/>
                 </View>    
 
                 <View style={{flex:2, backgroundColor: 'skyblue'}}>
