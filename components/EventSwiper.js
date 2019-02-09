@@ -2,7 +2,9 @@ import React from 'react'
 import {
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  Image,
+  ActivityIndicator
 } from 'react-native'
 
 import Swiper from 'react-native-swiper'
@@ -23,13 +25,16 @@ class EventSwiper extends React.Component {
   };
 
   async makeRequest() {
+
       const url = "https://react-native-gcapp.firebaseio.com/gc1/Events/.json";
       this.state.loading = true;
+
       try {
         const response = await fetch(url);
         const responseJSON = await response.json();
           
         this.setState({ loading:true }, () => {
+
           //Process the data   
           var dataArray = [];
 
@@ -43,8 +48,9 @@ class EventSwiper extends React.Component {
                   title: responseJSON[key].title,
                   id: key
               })
-                  console.log("Event " + key + " has value: " + responseJSON[key].title + " inserted!");
+              console.log("Event " + key + " has value: " + responseJSON[key].title + " inserted!");
           }
+
           //Successful data fetching, update state of component
           this.setState({
               data: dataArray,
@@ -58,20 +64,63 @@ class EventSwiper extends React.Component {
       }
   };
 
-  render(){
-    return (
-      <Swiper style={styles.wrapper} showsButtons>
-        <View style={styles.slide1}>
-          <Text style={styles.text}>Hello Swiper</Text>
-        </View>
-        <View style={styles.slide2}>
-          <Text style={styles.text}>Beautiful</Text>
-        </View>
-        <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
-        </View>
-      </Swiper>
+  eventRender(){
+    //For each object in this.state.data
+    return this.state.data.map((item) => 
+      <View style={styles.slide1}>
+          <Image style={styles.image} source ={{uri: item.imageLink}}/>
+      </View>
     );
+  };
+
+  eventDetails(){
+    return this.state.data.map((item) => 
+    <View style={{justifyContent:'center', alignItems:'center'}}>
+        <Text> {item.title} </Text>
+        <Text> {item.author} </Text>
+        <Text> {item.date} </Text>
+        <Text> {item.startTime} </Text>
+        <Text> {item.endTime} </Text>
+    </View>
+    );
+};
+  render(){
+
+    if(!this.state.loading){
+
+      return (
+
+        <View style={{ flex:1 }}>  
+              
+            <View style={{flex:3}}>
+              <Swiper style={styles.wrapper} 
+                showsButtons={true}
+                loop={false}
+                showPagination={false}
+              >
+                {this.eventRender()}
+              </Swiper>
+            </View>    
+  
+            <View style={{flex:2}}>
+              {this.eventDetails()}    
+            </View>
+          
+        </View>
+  
+      );
+
+    }
+    else {
+      return (
+        <View style={{alignItems:'center', justifyContent:'center'}}>
+          <Text>Loading Content Please Wait...</Text> 
+          <ActivityIndicator/>
+        </View>
+
+      );
+    }
+
   }
 
 }
@@ -82,14 +131,13 @@ const styles = {
   slide1: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB'
+    backgroundColor: 'transparent'
   },
   slide2: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5'
+    backgroundColor: 'transparent'
+,
   },
   slide3: {
     flex: 1,
@@ -101,6 +149,9 @@ const styles = {
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold'
+  },
+  image: {
+    flex: 1
   }
 }
 

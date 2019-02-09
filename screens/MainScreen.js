@@ -45,7 +45,7 @@ class MainScreen extends React.Component {
 
                     <View style={{flex:3}} >
                         <Container>
-                            <Header>
+                            <Header style={{backgroundColor:'steelblue'}}>
                                 <Body>
                                     <Title>This week's study</Title>
                                 </Body>
@@ -75,7 +75,7 @@ class MainScreen extends React.Component {
 
                     <View style={{flex:2}}>
                     <Container>
-                            <Header>
+                            <Header style={{backgroundColor:'steelblue'}}>
                                 <Body>
                                     <Title>Verse of the day</Title>
                                 </Body>

@@ -1,4 +1,6 @@
+import React from 'react'
 import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
+import {Icon} from 'native-base';
 
 import EventScreen from '../screens/Events';
 import EventCalendar from '../screens/EventCalendar';
@@ -8,10 +10,16 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 const EventStack = createMaterialTopTabNavigator(
     {
         EventMain:{
-            screen: EventScreen
+            screen: EventScreen,
+            navigationOptions:{
+                tabBarLabel: 'Events'
+            }
         },
         EventCalendar:{
-            screen: EventCalendar
+            screen: EventCalendar,
+            navigationOptions:{
+                tabBarLabel: 'Calendar'
+            }
         }
     },
     {

@@ -119,34 +119,48 @@ class PrayerList extends React.Component {
  
     };
 
-    render(){       
-        return (
+    render(){  
+        
+        if(!this.state.loading){
+            return (
+                <View>
+                {   
+                    <FlatList
+                        data={this.state.data}
+                        renderItem={({ item }) => (
+    
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')}>
+                                <ListItem
+                                title={item.title}
+                                subtitle={item.author}
+                                leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
+                                rightIcon={<Icon name='chevron-right' type='material-community'/>}
+                                />
+                            </TouchableOpacity>
+    
+                        )}
+                        keyExtractor={item => item.author}
+                        ItemSeparatorComponent={this.renderSeperator}
+                        ListHeaderComponent={this.renderHeader}
+                        ListFooterComponent={this.renderFooter}
+                        keyExtractor={item => item.title}
+                        navigation={this.props.navigation}
+                    />
+                }
+                </View>
+            );
+        }
+
+        else {
+            return (
             <View>
-            {   
-                <FlatList
-                    data={this.state.data}
-                    renderItem={({ item }) => (
-
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')}>
-                            <ListItem
-                            title={item.title}
-                            subtitle={item.author}
-                            leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
-                            rightIcon={<Icon name='chevron-right' type='material-community'/>}
-                            />
-                      </TouchableOpacity>
-
-                    )}
-                    keyExtractor={item => item.author}
-                    ItemSeparatorComponent={this.renderSeperator}
-                    ListHeaderComponent={this.renderHeader}
-                    ListFooterComponent={this.renderFooter}
-                    keyExtractor={item => item.title}
-                    navigation={this.props.navigation}
-                />
-            }
+                <View style={{flex:1, marginTop:100, justifyContent:'center', alignItems:'center'}}>
+                    <ActivityIndicator size="large"/>
+                </View>
             </View>
-        );
+            );
+        }
+
     }
 }
 

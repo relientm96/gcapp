@@ -6,8 +6,6 @@ import {Icon} from 'native-base';
 
 //Screens
 import UserProfile from '../screens/UserProfile';
-import MainScreen from '../screens/MainScreen';
-import EventScreen from '../screens/Events';
 
 //Navigators
 import PrayerStack from '../navigators/PrayerNavigator';
