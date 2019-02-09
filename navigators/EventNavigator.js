@@ -24,6 +24,7 @@ const EventStack = createMaterialTopTabNavigator(
     },
     {
     initialRouteName: 'EventMain',
+    swipeEnabled: false,
     tabBarOptions: {
         activeTintColor: 'white',
         inactiveTintColor: 'white',
@@ -37,7 +38,7 @@ const EventStack = createMaterialTopTabNavigator(
         },
         tabStyle: {
             marginTop: getStatusBarHeight(),
-            height: 50,
+            height: 55.5,
         },
         showIcon: true,
         showLabel: true,

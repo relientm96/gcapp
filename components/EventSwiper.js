@@ -67,23 +67,19 @@ class EventSwiper extends React.Component {
   eventRender(){
     //For each object in this.state.data
     return this.state.data.map((item) => 
-      <View style={styles.slide1}>
+      <View style={styles.slide}>
           <Image style={styles.image} source ={{uri: item.imageLink}}/>
+          <View style={{justifyContent:'center', alignItems:'center'}}>
+              <Text> Title: {item.title} </Text>
+              <Text> Host: {item.author} </Text>
+              <Text> Date: {item.date} </Text>
+              <Text> Start: {item.startTime} </Text>
+              <Text> End: {item.endTime} </Text>
+          </View>
       </View>
     );
   };
 
-  eventDetails(){
-    return this.state.data.map((item) => 
-    <View style={{justifyContent:'center', alignItems:'center'}}>
-        <Text> {item.title} </Text>
-        <Text> {item.author} </Text>
-        <Text> {item.date} </Text>
-        <Text> {item.startTime} </Text>
-        <Text> {item.endTime} </Text>
-    </View>
-    );
-};
   render(){
 
     if(!this.state.loading){
@@ -92,19 +88,15 @@ class EventSwiper extends React.Component {
 
         <View style={{ flex:1 }}>  
               
-            <View style={{flex:3}}>
+            <View style={{flex:1}}>
               <Swiper style={styles.wrapper} 
-                showsButtons={true}
+                showsButtons={false}
                 loop={false}
                 showPagination={false}
               >
                 {this.eventRender()}
               </Swiper>
             </View>    
-  
-            <View style={{flex:2}}>
-              {this.eventDetails()}    
-            </View>
           
         </View>
   
@@ -128,22 +120,10 @@ class EventSwiper extends React.Component {
 const styles = {
   wrapper: {
   },
-  slide1: {
+  slide: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: 'transparent'
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'transparent'
-,
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9'
   },
   text: {
     color: '#fff',
@@ -151,7 +131,7 @@ const styles = {
     fontWeight: 'bold'
   },
   image: {
-    flex: 1
+    height: 150,
   }
 }
 
