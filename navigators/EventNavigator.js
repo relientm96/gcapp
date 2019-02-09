@@ -29,6 +29,7 @@ const EventStack = createMaterialTopTabNavigator(
         },
         tabStyle: {
             marginTop: getStatusBarHeight(),
+            height: 50,
         },
         showIcon: true,
         showLabel: true,

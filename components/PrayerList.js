@@ -1,9 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
-import { List, ListItem, SearchBar, Icon, Button } from 'react-native-elements';
-import { createStackNavigator, withNavigation } from 'react-navigation';
-
-import PrayerDetail from '../screens/PrayerDetailScreen';
+import { ListItem, SearchBar, Icon, Button } from 'react-native-elements';
+import { withNavigation } from 'react-navigation';
 
 class PrayerList extends React.Component {
     constructor(props){
@@ -22,17 +20,36 @@ class PrayerList extends React.Component {
     };
 
     async makeRequest() {
-        const url = "https://react-native-gcapp.firebaseio.com/gc1/-LYCGzCe_qKyeRV30xQA.json";
+        const url = "https://react-native-gcapp.firebaseio.com/gc1/Prayers.json";
+        this.state.loading = true;
         try {
           const response = await fetch(url);
           const responseJSON = await response.json();
-    
-          this.setState({ data: responseJSON.prayerList }, () => {
-            console.log("Prayer List - getCollection() State Updated", this.state);
+            
+          this.setState({ loading:true }, () => {
+            //Process the data   
+            var dataArray = [];
+
+            for (const key in responseJSON){
+                dataArray.push({
+                    author: responseJSON[key].author,
+                    title: responseJSON[key].title,
+                    imageLink: responseJSON[key].imageLink,
+                    answered: responseJSON[key].answered,
+                    id: key
+                })
+                    console.log("Data " + key + " has value: " + responseJSON[key].author + " inserted!");
+            }
+            //Successful data fetching, update state of component
+            this.setState({
+                data: dataArray,
+                loading: false
+           });
+
           });
-    
+
         } catch (error) {
-          console.log("Prayer List - getCollection() error", error);
+          console.log("Prayer List - makeRequest() error", error);
         }
     };
 
@@ -120,7 +137,7 @@ class PrayerList extends React.Component {
                       </TouchableOpacity>
 
                     )}
-                    keyExtractor={item => item.name}
+                    keyExtractor={item => item.author}
                     ItemSeparatorComponent={this.renderSeperator}
                     ListHeaderComponent={this.renderHeader}
                     ListFooterComponent={this.renderFooter}
