@@ -1,9 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
-import { List, ListItem, SearchBar, Icon, Button } from 'react-native-elements';
-import { createStackNavigator, withNavigation } from 'react-navigation';
-
-import PrayerDetail from '../screens/PrayerDetailScreen';
+import { ListItem, SearchBar, Icon, Button } from 'react-native-elements';
+import { withNavigation } from 'react-navigation';
 
 class PrayerList extends React.Component {
     constructor(props){
@@ -17,22 +15,41 @@ class PrayerList extends React.Component {
     };
 
     componentDidMount() {
-        console.log('component did mount');
+        console.log('PrayerList did mount');
         this.makeRequest();
     };
 
     async makeRequest() {
-        const url = "https://react-native-gcapp.firebaseio.com/gc1/-LYCGzCe_qKyeRV30xQA.json";
+        const url = "https://react-native-gcapp.firebaseio.com/gc1/Prayers.json";
+        this.state.loading = true;
         try {
           const response = await fetch(url);
           const responseJSON = await response.json();
-    
-          this.setState({ data: responseJSON.prayerList }, () => {
-            console.log("Prayer List - getCollection() State Updated", this.state);
+            
+          this.setState({ loading:true }, () => {
+            //Process the data   
+            var dataArray = [];
+
+            for (const key in responseJSON){
+                dataArray.push({
+                    author: responseJSON[key].author,
+                    title: responseJSON[key].title,
+                    imageLink: responseJSON[key].imageLink,
+                    answered: responseJSON[key].answered,
+                    id: key
+                })
+                    console.log("Prayer " + key + " has value: " + responseJSON[key].author + " inserted!");
+            }
+            //Successful data fetching, update state of component
+            this.setState({
+                data: dataArray,
+                loading: false
+           });
+
           });
-    
+
         } catch (error) {
-          console.log("Prayer List - getCollection() error", error);
+          console.log("Prayer List - makeRequest() error", error);
         }
     };
 
@@ -102,34 +119,48 @@ class PrayerList extends React.Component {
  
     };
 
-    render(){       
-        return (
+    render(){  
+        
+        if(!this.state.loading){
+            return (
+                <View>
+                {   
+                    <FlatList
+                        data={this.state.data}
+                        renderItem={({ item }) => (
+    
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')}>
+                                <ListItem
+                                title={item.title}
+                                subtitle={item.author}
+                                leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
+                                rightIcon={<Icon name='chevron-right' type='material-community'/>}
+                                />
+                            </TouchableOpacity>
+    
+                        )}
+                        keyExtractor={item => item.author}
+                        ItemSeparatorComponent={this.renderSeperator}
+                        ListHeaderComponent={this.renderHeader}
+                        ListFooterComponent={this.renderFooter}
+                        keyExtractor={item => item.title}
+                        navigation={this.props.navigation}
+                    />
+                }
+                </View>
+            );
+        }
+
+        else {
+            return (
             <View>
-            {   
-                <FlatList
-                    data={this.state.data}
-                    renderItem={({ item }) => (
-
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')}>
-                            <ListItem
-                            title={item.title}
-                            subtitle={item.author}
-                            leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
-                            rightIcon={<Icon name='chevron-right' type='material-community'/>}
-                            />
-                      </TouchableOpacity>
-
-                    )}
-                    keyExtractor={item => item.name}
-                    ItemSeparatorComponent={this.renderSeperator}
-                    ListHeaderComponent={this.renderHeader}
-                    ListFooterComponent={this.renderFooter}
-                    keyExtractor={item => item.title}
-                    navigation={this.props.navigation}
-                />
-            }
+                <View style={{flex:1, marginTop:100, justifyContent:'center', alignItems:'center'}}>
+                    <ActivityIndicator size="large"/>
+                </View>
             </View>
-        );
+            );
+        }
+
     }
 }
 
