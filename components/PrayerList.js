@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity, TextInput, Platform, StatusBar, Keyboard} from 'react-native';
 import { ListItem, SearchBar, Icon, Button } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
@@ -10,12 +10,19 @@ class PrayerList extends React.Component {
         this.state = {
             data: [],
             loading: false,
-            query: ''
+            query: '',
         };
     };
 
+    componentWillMount(){
+        this.startHeaderHeight = 80;
+        if(Platform.OS == 'android'){
+            this.startHeaderHeight = 100 + StatusBar.currentHeight
+        }
+    }
+
     componentDidMount() {
-        console.log('PrayerList did mount');
+        console.log("Prayer List Mounted","[ComponentDidMount Method from PrayerList]");
         this.makeRequest();
     };
 
@@ -88,17 +95,49 @@ class PrayerList extends React.Component {
         );
     };
 
-    searchHandler = (text) => {
-        this.setState({ query: text });
-    };
+    clearSearch = () => {
+        console.log("Clear Search");
+        this.setState({
+            query:''
+        })
+    }
 
-    renderHeader = () => {
-        console.log(this.state.query);
-        return <SearchBar 
-            placeholder="Search Prayers..."
-            onChangeText={this.searchHandler}
-            value={this.state.query}
-            />
+    renderHeader(){
+        return (
+
+            <View style={{ 
+                height:80, 
+                backgroundColor: 'white',
+                paddingHorizontal: 5, 
+                borderBottomWidth:1, 
+                borderBottomColor: '#dddddd', 
+                justifyContent: 'center',
+                }}>
+                <View style={{
+                    flexDirection: 'row', 
+                    height: 50,
+                    padding: 5, 
+                    backgroundColor: 'white', 
+                    marginHorizontal: 20, 
+                    shadowOffset:{width:0,height:0},
+                    elevation:1,
+                    alignItems: 'center',
+                    shadowOpacity: 0.2,
+                    }}>  
+                    <Icon name="ios-search" type="ionicon" size={20}/>
+                    <TextInput
+                        placeholder="Search Prayers"
+                        placeholderTextColor="grey"
+                        underlineColorAndroid="transparent"
+                        style={{flex:1, fontWeight: '700', backgroundColor:'white', marginLeft: 15}}
+                        onChangeText={(query) => this.setState({query})}
+                        value={this.state.query}
+                    />
+                    <Icon name="x" type="feather" size={20} />
+                </View>
+            </View>
+    
+        );
     };
 
     renderFooter = () =>{
@@ -123,14 +162,20 @@ class PrayerList extends React.Component {
         
         if(!this.state.loading){
             return (
-                <View>
-                {   
+
+                <View style={{flex:1}}>
+                    <View>
+                        {this.renderHeader()}
+                    </View>
+                     
                     <FlatList
                         data={this.state.data}
                         renderItem={({ item }) => (
     
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')}>
+                            <TouchableOpacity style={{padding:5}}
+                                onPress={() => this.props.navigation.navigate('DetailScreen')}>
                                 <ListItem
+                                style={{backgroundColor:this.state.isSearchBarFocused? 'rgba(0,0,0,0.3)': 'white' }}
                                 title={item.title}
                                 subtitle={item.author}
                                 leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
@@ -141,12 +186,11 @@ class PrayerList extends React.Component {
                         )}
                         keyExtractor={item => item.author}
                         ItemSeparatorComponent={this.renderSeperator}
-                        ListHeaderComponent={this.renderHeader}
                         ListFooterComponent={this.renderFooter}
                         keyExtractor={item => item.title}
                         navigation={this.props.navigation}
                     />
-                }
+                
                 </View>
             );
         }

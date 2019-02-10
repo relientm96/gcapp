@@ -24,10 +24,10 @@ const EventStack = createMaterialTopTabNavigator(
     },
     {
     initialRouteName: 'EventMain',
-    swipeEnabled: false,
+    swipeEnabled: true,
     tabBarOptions: {
         activeTintColor: 'white',
-        inactiveTintColor: 'white',
+        inactiveTintColor: '#f2f2f2',
         style: {
             backgroundColor: 'steelblue',
             borderTopWidth: 0.5,

@@ -54,16 +54,19 @@ const AppNavigator = createMaterialTopTabNavigator(
     {
         initialRouteName: 'Main',
         order:['Main','Events','Prayers','User'],
-        swipeEnabled: true,
-        animationEnabled: true,
+        swipeEnabled: false,
+        animationEnabled: false,
         optimizationsEnabled: true,
         tabBarOptions: {
             activeTintColor: 'white',
-            inactiveTintColor: 'white',
+            inactiveTintColor: '#f2f2f2',
             style: {
                 backgroundColor: 'steelblue',
-                borderTopWidth: 0.5,
-                borderTopColor: 'grey',
+                borderTopWidth: 0,
+                shadowOffset:{width:5,height:3},
+                shadowColor:'black',
+                shadowOpacity: 0.5,
+                elevation: 5
             },
             indicatorStyle: {
                 height: 0

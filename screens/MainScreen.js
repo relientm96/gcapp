@@ -35,7 +35,6 @@ class MainScreen extends React.Component {
             )
         }
         else {
-            //Limit to 130charcters for nice layout, anymore ask them to click on it for more details (For Verse)
             return (
             <SafeAreaView style={{ flex:1, backgroundColor: 'white' }}>  
 
@@ -43,14 +42,20 @@ class MainScreen extends React.Component {
 
                 <View style={{flex:1}}>
 
-                    <View style={{flex:3}} >
-                        <Container>
-                            <Header style={{backgroundColor:'steelblue'}}>
-                                <Body>
-                                    <Title>This week's study</Title>
-                                </Body>
-                            </Header>
-                            <Content padder>
+                    <Container>
+                        
+                        <Header style={{
+                            backgroundColor:'steelblue',
+                            borderBottomWidth: 1, 
+                            borderBottomColor: '#dddddd'
+                            }}>
+                            <Body>
+                                <Title style={{fontSize: 20, fontWeight:'700'}}>Home</Title>
+                            </Body>
+                        </Header>
+                        
+                        <Content padder>
+
                             <Card>
                                 <CardItem header bordered>
                                 <Text>Gospel of John</Text>
@@ -66,21 +71,10 @@ class MainScreen extends React.Component {
                                 </Body>
                                 </CardItem>
                                 <CardItem footer bordered>
-                                <Text>Matthew Yong - 6/2/2019</Text>
+                                <Text>Matthew Yong</Text>
                                 </CardItem>
                             </Card>
-                            </Content>
-                        </Container>
-                    </View>
 
-                    <View style={{flex:2}}>
-                    <Container>
-                            <Header style={{backgroundColor:'steelblue'}}>
-                                <Body>
-                                    <Title>Verse of the day</Title>
-                                </Body>
-                            </Header>
-                            <Content padder>
                             <Card>
                                 <CardItem header bordered>
                                     <Text>Matthew 18:15</Text>
@@ -94,10 +88,10 @@ class MainScreen extends React.Component {
                                 </Body>
                                 </CardItem>
                             </Card>
-                            </Content>
-                        </Container>
-                    </View>
+                        
+                        </Content>
 
+                        </Container>
 
                 </View>
 
