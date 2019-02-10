@@ -67,7 +67,7 @@ class EventSwiper extends React.Component {
   eventRender(){
     //For each object in this.state.data
     return this.state.data.map((item) => 
-      <View style={styles.slide}>
+      <View key = {item.id} style={styles.slide}>
           <Image style={styles.image} source ={{uri: item.imageLink}}/>
           <View style={{justifyContent:'center', alignItems:'center'}}>
               <Text> Title: {item.title} </Text>
