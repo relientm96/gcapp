@@ -133,7 +133,17 @@ class PrayerList extends React.Component {
                         onChangeText={(query) => this.setState({query})}
                         value={this.state.query}
                     />
-                    <Icon name="x" type="feather" size={20} />
+                    <Button
+                        icon={
+                            <Icon
+                                name="x"
+                                type="feather"
+                                size={20}
+                            />
+                        }
+                        type="clear"
+                        onPress={this.clearSearch}
+                    />
                 </View>
             </View>
     
@@ -173,7 +183,11 @@ class PrayerList extends React.Component {
                         renderItem={({ item }) => (
     
                             <TouchableOpacity style={{padding:5}}
-                                onPress={() => this.props.navigation.navigate('DetailScreen')}>
+                                onPress={() => this.props.navigation.navigate('DetailScreen',{ 
+                                    prayertitle: item.title, 
+                                    author: item.author,
+                                    prayerImage: item.imageLink
+                                    })}>
                                 <ListItem
                                 style={{backgroundColor:this.state.isSearchBarFocused? 'rgba(0,0,0,0.3)': 'white' }}
                                 title={item.title}
