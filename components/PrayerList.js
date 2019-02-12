@@ -70,6 +70,7 @@ class PrayerList extends React.Component {
                     imageLink: responseJSON[key].imageLink,
                     date: responseJSON[key].date,
                     answered: responseJSON[key].answered,
+                    description: responseJSON[key].description,
                     id: key
                 })
             }
@@ -159,7 +160,7 @@ class PrayerList extends React.Component {
 
     renderFooter = () =>{
 
-        if(this.state.loading && this.state.refreshing){
+        if(this.state.loading){
             return (
                 <View style={{paddingVertical: 20, borderTopWidth: 1, borderTopColor: '#CED0CE'}}>
                     <ActivityIndicator animating size="large"/>
@@ -217,7 +218,8 @@ class PrayerList extends React.Component {
                                 onPress={() => this.props.navigation.navigate('DetailScreen',{ 
                                     prayertitle: item.title, 
                                     author: item.author,
-                                    prayerImage: item.imageLink
+                                    prayerImage: item.imageLink,
+                                    description: item.description
                                     })}>
                                 <ListItem
                                 containerStyle={{ alignItems: 'center' }}
