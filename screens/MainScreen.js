@@ -11,7 +11,8 @@ class MainScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            loading: true 
+            loading: true,
+            dailyVerse: "",
         };
     }  
 
@@ -25,6 +26,31 @@ class MainScreen extends React.Component {
           Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
         });
         this.setState({ loading: false });
+    };
+
+    componentDidMount() {
+        console.log('Main Screen Mount');
+        this.makeRequest();
+    };
+  
+    async makeRequest() {
+  
+        const url = "https://react-native-gcapp.firebaseio.com/gc1/WeeklyVerse.json";
+        this.state.loading = true;
+  
+        try {
+          const response = await fetch(url);
+          const responseJSON = await response.json();
+            
+          this.setState({ 
+              loading:false,
+              dailyVerse: responseJSON.verse,
+            });
+          console.log('Inserted: ' + responseJSON.verse);
+
+        } catch (error) {
+          console.log("Prayer List - makeRequest() error", error);
+        }
     };
 
     render(){
@@ -64,7 +90,7 @@ class MainScreen extends React.Component {
                                 padding: 5, 
                                 borderWidth: 0.5,
                                 borderColor: '#dddddd'}}>
-                                <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('User')}>
+                                <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Study')}>
                                 <BlurView style = {{flex:1}}>
                                     <ImageBackground source = {{uri: "https://media.swncdn.com/cms/CW/faith/60657-bible-teaching-1200.jpg"}} 
                                         style={{flex:1, width:'100%', height:'60%', resizeMode:'cover'}}>
@@ -149,15 +175,16 @@ class MainScreen extends React.Component {
                             justifyContent: 'center',
                             alignItems: 'center',
                             borderColor: '#dddddd'}}>
-                            <View style = {{flex:1}}>
-                                <Text style={{paddingTop:5, paddingBottom:5, fontSize: 18, fontWeight: '700'}}>
-                                    Verse of the Week
-                                </Text>
-                                <Text style={{padding: 5, paddingBottom: 10}}>
-                                    John 18:15: “If your brother or sister sins, go and point out their fault, just between the two of you. 
-                                    If they listen to you, you have won. Lorem Ipsum Lorem Ipsum Lorem Ipsum 
-                                </Text>
-                            </View>
+                            <ScrollView style = {{flex:1}} showsVerticalScrollIndicator={true}>
+                                <View>
+                                    <Text style={{paddingTop:5, paddingBottom:5, fontSize: 18, fontWeight: '700'}}>
+                                        Verse of the Week
+                                    </Text>
+                                    <Text style={{padding: 5, paddingBottom: 10}}>
+                                        {this.state.dailyVerse}
+                                    </Text>
+                                </View>
+                            </ScrollView>
                     </View>
 
                 </View>                             

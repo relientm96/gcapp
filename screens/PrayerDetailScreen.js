@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, ScrollView, FlatList} from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { Text, View, Image, SafeAreaView, ScrollView} from 'react-native';
 
 class PrayerDetail extends React.Component {
     constructor(props) {

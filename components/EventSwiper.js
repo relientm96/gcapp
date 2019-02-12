@@ -48,7 +48,6 @@ class EventSwiper extends React.Component {
                   title: responseJSON[key].title,
                   id: key
               })
-              console.log("Event " + key + " has value: " + responseJSON[key].title + " inserted!");
           }
 
           //Successful data fetching, update state of component

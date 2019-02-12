@@ -45,7 +45,6 @@ class PrayerList extends React.Component {
                     answered: responseJSON[key].answered,
                     id: key
                 })
-                    console.log("Prayer " + key + " has value: " + responseJSON[key].author + " inserted!");
             }
             //Successful data fetching, update state of component
             this.setState({

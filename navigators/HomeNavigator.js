@@ -6,27 +6,37 @@ import {Icon} from 'native-base';
 
 //Screens
 import UserProfile from '../screens/UserProfile';
+import MainScreen from '../screens/MainScreen';
+import StudyScreen from '../screens/StudyScreen';
 
 //Navigators
 import PrayerStack from '../navigators/PrayerNavigator';
-import HomeStack from '../navigators/MainNavigator';
 import EventStack from '../navigators/EventNavigator';
 
 const AppNavigator = createMaterialTopTabNavigator(
     { 
         Main: {
-            screen: HomeStack,
+            screen: MainScreen,
             navigationOptions:{
-                tabBarLabel: 'Home',
+              //  tabBarLabel: 'Home',
                 tabBarIcon: ({tintColor})=>(
                     <Icon style={{color: "white"}} name="home" color={tintColor} size={24}/>
+                )
+            }
+        },
+        Study: {
+            screen: StudyScreen,
+            navigationOptions:{
+              //  tabBarLabel: 'Home',
+                tabBarIcon: ({tintColor})=>(
+                    <Icon style={{color: "white"}} name="book" color={tintColor} size={24}/>
                 )
             }
         },
         User: {
             screen: UserProfile,
             navigationOptions:{
-                tabBarLabel: 'Profile',
+               // tabBarLabel: 'Profile',
                 tabBarIcon: ({tintColor})=>(
                     <Icon style={{color: "white"}} name="person" color={tintColor} size={24}/>
                 )
@@ -35,7 +45,7 @@ const AppNavigator = createMaterialTopTabNavigator(
         Prayers: { 
             screen: PrayerStack,
             navigationOptions:{
-                tabBarLabel: 'Prayers',
+               // tabBarLabel: 'Prayers',
                 tabBarIcon: ({tintColor})=>(
                     <Icon style={{color: "white"}} name="hand" color={tintColor} size={24}/>
                 )
@@ -44,7 +54,7 @@ const AppNavigator = createMaterialTopTabNavigator(
         Events: {
             screen: EventStack,
             navigationOptions:{
-                tabBarLabel: 'Events',
+              //  tabBarLabel: 'Events',
                 tabBarIcon: ({tintColor})=>(
                     <Icon style={{color: "white"}} name="calendar" color={tintColor} size={24}/>
                 )
@@ -53,7 +63,7 @@ const AppNavigator = createMaterialTopTabNavigator(
     },
     {
         initialRouteName: 'Main',
-        order:['Main','Events','Prayers','User'],
+        order:['Main','Study','Events','Prayers','User'],
         swipeEnabled: false,
         animationEnabled: false,
         optimizationsEnabled: true,
@@ -72,11 +82,12 @@ const AppNavigator = createMaterialTopTabNavigator(
                 height: 0
             },
             tabStyle: {
-                marginTop: 10,
-                height: 50,
+                marginTop: 5,
+                height: 45,
+                marginBottom: 5,
             },
             showIcon: true,
-            showLabel: true,
+            showLabel: false,
         },
         tabBarPosition: 'bottom',
     }
