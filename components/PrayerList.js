@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity, TextInput, Platform, StatusBar, Keyboard} from 'react-native';
-import { ListItem, SearchBar, Icon, Button } from 'react-native-elements';
+import { ListItem, Icon, Button } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 class PrayerList extends React.Component {

@@ -54,7 +54,7 @@ const AppNavigator = createMaterialTopTabNavigator(
     {
         initialRouteName: 'Main',
         order:['Main','Events','Prayers','User'],
-        swipeEnabled: false,
+        swipeEnabled: true,
         animationEnabled: false,
         optimizationsEnabled: true,
         tabBarOptions: {
