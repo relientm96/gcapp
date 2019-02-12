@@ -24,15 +24,11 @@ class PrayerList extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Prayer List Mounted","[ComponentDidMount Method from PrayerList]");
         this.makeRequest();
     };
 
     //Sort Prayers In Chronological Order
     sortByDate(dataArray){
-
-        console.log("Before Sort: " + dataArray);
-
         dataArray.sort(function(a, b){
             //Extract dates from dates string
             var month_a = parseInt(a.date.substring(3,5),10);
@@ -49,7 +45,6 @@ class PrayerList extends React.Component {
                 return  date_b - date_a;
             }
         });
-        console.log("After Sort: " + dataArray);
         return dataArray;
     }
 
@@ -108,6 +103,7 @@ class PrayerList extends React.Component {
         this.setState({
             query:''
         })
+        Keyboard.dismiss();
     }
 
     renderHeader(){
@@ -178,7 +174,6 @@ class PrayerList extends React.Component {
     };
 
     renderRightSide(item){
-
         return(
             <View>
                <Text style={{padding: 5, fontSize: 13, color:'rgba(0,0,0,0.5)'}}> {item.date.substring(0,5)} </Text>
@@ -195,18 +190,18 @@ class PrayerList extends React.Component {
         });
     }
 
+    //Handles Search Bar searches
     getNewSearches = (text) => {
-
         this.setState({
             query : text
         })
 
         //Store only searched items here
         var searchedData = [];
-        var currentQuery = this.state.query;
+        var currentQuery = this.state.query.toLowerCase();
 
         this.state.data.forEach(function(element){
-            if(element.title.includes(currentQuery)){
+            if( element.title.toLowerCase().includes(currentQuery) || element.author.toLowerCase().includes(currentQuery) ){
                 searchedData.push({
                     author: element.author,
                     title: element.title,
@@ -227,7 +222,7 @@ class PrayerList extends React.Component {
     render(){  
         
         //No searching and not refreshing/loading
-        if( (!this.state.loading || this.state.refreshing ) && (this.state.query.length == 0) ){
+        if( (!this.state.loading || this.state.refreshing ) && (this.state.query.trim().length == 0) ){
             return (
 
                 <View style={{flex:1}}>
@@ -274,7 +269,7 @@ class PrayerList extends React.Component {
         }
 
         //Searching
-        else if(this.state.query.length != 0){
+        else if(this.state.query.trim().length != 0){
 
             return (
                 <View style={{flex:1}}>
