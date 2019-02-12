@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity, TextInput, Platform, StatusBar, Keyboard} from 'react-native';
-import { ListItem, Icon, Button } from 'react-native-elements';
+import { View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity, TextInput, Platform, StatusBar, Keyboard, RefreshControl} from 'react-native';
+import { ListItem, Icon, Button, Badge, Avatar } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 class PrayerList extends React.Component {
@@ -10,6 +10,7 @@ class PrayerList extends React.Component {
         this.state = {
             data: [],
             loading: false,
+            refreshing: false,
             query: '',
         };
     };
@@ -25,6 +26,31 @@ class PrayerList extends React.Component {
         console.log("Prayer List Mounted","[ComponentDidMount Method from PrayerList]");
         this.makeRequest();
     };
+
+    //Sort Prayers In Chronological Order
+    sortByDate(dataArray){
+
+        console.log("Before Sort: " + dataArray);
+
+        dataArray.sort(function(a, b){
+            //Extract dates from dates string
+            var month_a = parseInt(a.date.substring(3,5),10);
+            var month_b = parseInt(b.date.substring(3,5),10);
+
+            if( month_a != month_b){
+               return month_b - month_a;
+            }
+            //Check for dates if same month
+            else {
+                //Extract dates from dates string
+                var date_a = parseInt(a.date.substring(0,2),10);
+                var date_b = parseInt(b.date.substring(0,2),10);
+                return  date_b - date_a;
+            }
+        });
+        console.log("After Sort: " + dataArray);
+        return dataArray;
+    }
 
     async makeRequest() {
         const url = "https://react-native-gcapp.firebaseio.com/gc1/Prayers.json";
@@ -42,10 +68,14 @@ class PrayerList extends React.Component {
                     author: responseJSON[key].author,
                     title: responseJSON[key].title,
                     imageLink: responseJSON[key].imageLink,
+                    date: responseJSON[key].date,
                     answered: responseJSON[key].answered,
                     id: key
                 })
             }
+
+            this.sortByDate(dataArray);
+
             //Successful data fetching, update state of component
             this.setState({
                 data: dataArray,
@@ -58,29 +88,7 @@ class PrayerList extends React.Component {
           console.log("Prayer List - makeRequest() error", error);
         }
     };
-
-    /*
-    makeRequest = () => {
-        const url = "https://react-native-gcapp.firebaseio.com/-LXstc3dEuV9Da-h3Ak2.json";
-        this.setState({ loading: true });
-        fetch(url)
-        .then(response => response.json())
-        .then(response => {
-            this.setState({
-                data: response.prayerList,
-                fulldata: response.prayerList
-            })
-            console.log(response);
-            console.log(this.state.loading);
-        })
-        .catch(error => {
-            this.setState({ error, loading: false});
-        })
-    };*/
-
-    toPrayerDetail = () => {
-        console.log('Detail Screen');
-    };
+    
     
     renderSeperator = () => {
         return(
@@ -95,13 +103,13 @@ class PrayerList extends React.Component {
     };
 
     clearSearch = () => {
-        console.log("Clear Search");
         this.setState({
             query:''
         })
     }
 
     renderHeader(){
+        
         return (
 
             <View style={{ 
@@ -151,7 +159,7 @@ class PrayerList extends React.Component {
 
     renderFooter = () =>{
 
-        if(this.state.loading){
+        if(this.state.loading && this.state.refreshing){
             return (
                 <View style={{paddingVertical: 20, borderTopWidth: 1, borderTopColor: '#CED0CE'}}>
                     <ActivityIndicator animating size="large"/>
@@ -167,9 +175,27 @@ class PrayerList extends React.Component {
  
     };
 
+    renderRightSide(item){
+
+        return(
+            <View>
+               <Text style={{padding: 5, fontSize: 13, color:'rgba(0,0,0,0.5)'}}> {item.date.substring(0,5)} </Text>
+               <Icon style={{padding: 5, color:'yellow'}} type="ionicon" name="ios-notifications" size={18}></Icon> 
+            </View>
+
+        );
+    }
+
+    onRefresh = () => {
+        this.setState({refreshing: true});
+        this.makeRequest().then(() => {
+          this.setState({refreshing: false});
+        });
+    }
+
     render(){  
         
-        if(!this.state.loading){
+        if(!this.state.loading || this.state.refreshing){
             return (
 
                 <View style={{flex:1}}>
@@ -179,6 +205,12 @@ class PrayerList extends React.Component {
                      
                     <FlatList
                         data={this.state.data}
+                        refreshControl={
+                            <RefreshControl
+                              refreshing={this.state.refreshing}
+                              onRefresh={this.onRefresh}
+                            />
+                        }
                         renderItem={({ item }) => (
     
                             <TouchableOpacity style={{padding:5}}
@@ -188,11 +220,11 @@ class PrayerList extends React.Component {
                                     prayerImage: item.imageLink
                                     })}>
                                 <ListItem
-                                style={{backgroundColor:this.state.isSearchBarFocused? 'rgba(0,0,0,0.3)': 'white' }}
+                                containerStyle={{ alignItems: 'center' }}
                                 title={item.title}
                                 subtitle={item.author}
-                                leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
-                                rightIcon={<Icon name='chevron-right' type='material-community'/>}
+                                leftAvatar={<Avatar rounded source={{uri: item.imageLink}} size="medium"/>}
+                                rightSubtitle={this.renderRightSide(item)}
                                 />
                             </TouchableOpacity>
     
