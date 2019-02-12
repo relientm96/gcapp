@@ -9,6 +9,7 @@ class PrayerList extends React.Component {
 
         this.state = {
             data: [],
+            querySearches: [],
             loading: false,
             refreshing: false,
             query: '',
@@ -138,7 +139,7 @@ class PrayerList extends React.Component {
                         placeholderTextColor="grey"
                         underlineColorAndroid="transparent"
                         style={{flex:1, fontWeight: '700', backgroundColor:'white', marginLeft: 15}}
-                        onChangeText={(query) => this.setState({query})}
+                        onChangeText={ (text) => this.getNewSearches(text) }
                         value={this.state.query}
                     />
                     <Button
@@ -194,9 +195,39 @@ class PrayerList extends React.Component {
         });
     }
 
+    getNewSearches = (text) => {
+
+        this.setState({
+            query : text
+        })
+
+        //Store only searched items here
+        var searchedData = [];
+        var currentQuery = this.state.query;
+
+        this.state.data.forEach(function(element){
+            if(element.title.includes(currentQuery)){
+                searchedData.push({
+                    author: element.author,
+                    title: element.title,
+                    imageLink: element.imageLink,
+                    date: element.date,
+                    answered: element.answered,
+                    description: element.description,
+                    id: element.id
+                })
+            }
+        });
+
+        this.setState({
+            querySearches : searchedData
+        })
+    }
+
     render(){  
         
-        if(!this.state.loading || this.state.refreshing){
+        //No searching and not refreshing/loading
+        if( (!this.state.loading || this.state.refreshing ) && (this.state.query.length == 0) ){
             return (
 
                 <View style={{flex:1}}>
@@ -239,6 +270,53 @@ class PrayerList extends React.Component {
                     />
                 
                 </View>
+            );
+        }
+
+        //Searching
+        else if(this.state.query.length != 0){
+
+            return (
+                <View style={{flex:1}}>
+                <View>
+                    {this.renderHeader()}
+                </View>
+                 
+                <FlatList
+                    data={this.state.querySearches}
+                    refreshControl={
+                        <RefreshControl
+                          refreshing={this.state.refreshing}
+                          onRefresh={this.onRefresh}
+                        />
+                    }
+                    renderItem={({ item }) => (
+
+                        <TouchableOpacity style={{padding:5}}
+                            onPress={() => this.props.navigation.navigate('DetailScreen',{ 
+                                prayertitle: item.title, 
+                                author: item.author,
+                                prayerImage: item.imageLink,
+                                description: item.description
+                                })}>
+                            <ListItem
+                            containerStyle={{ alignItems: 'center' }}
+                            title={item.title}
+                            subtitle={item.author}
+                            leftAvatar={<Avatar rounded source={{uri: item.imageLink}} size="medium"/>}
+                            rightSubtitle={this.renderRightSide(item)}
+                            />
+                        </TouchableOpacity>
+
+                    )}
+                    keyExtractor={item => item.author}
+                    ItemSeparatorComponent={this.renderSeperator}
+                    ListFooterComponent={this.renderFooter}
+                    keyExtractor={item => item.title}
+                    navigation={this.props.navigation}
+                />
+            
+            </View>
             );
         }
 
