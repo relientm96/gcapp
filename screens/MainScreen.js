@@ -46,7 +46,6 @@ class MainScreen extends React.Component {
               loading:false,
               dailyVerse: responseJSON.verse,
             });
-          console.log('Inserted: ' + responseJSON.verse);
 
         } catch (error) {
           console.log("Prayer List - makeRequest() error", error);

@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity, TextInput, Platform, StatusBar, Keyboard} from 'react-native';
-import { ListItem, Icon, Button } from 'react-native-elements';
+import { View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity, TextInput, Platform, StatusBar, Keyboard, RefreshControl} from 'react-native';
+import { ListItem, Icon, Button, Badge, Avatar } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 class PrayerList extends React.Component {
@@ -9,7 +9,9 @@ class PrayerList extends React.Component {
 
         this.state = {
             data: [],
+            querySearches: [],
             loading: false,
+            refreshing: false,
             query: '',
         };
     };
@@ -22,9 +24,29 @@ class PrayerList extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Prayer List Mounted","[ComponentDidMount Method from PrayerList]");
         this.makeRequest();
     };
+
+    //Sort Prayers In Chronological Order
+    sortByDate(dataArray){
+        dataArray.sort(function(a, b){
+            //Extract dates from dates string
+            var month_a = parseInt(a.date.substring(3,5),10);
+            var month_b = parseInt(b.date.substring(3,5),10);
+
+            if( month_a != month_b){
+               return month_b - month_a;
+            }
+            //Check for dates if same month
+            else {
+                //Extract dates from dates string
+                var date_a = parseInt(a.date.substring(0,2),10);
+                var date_b = parseInt(b.date.substring(0,2),10);
+                return  date_b - date_a;
+            }
+        });
+        return dataArray;
+    }
 
     async makeRequest() {
         const url = "https://react-native-gcapp.firebaseio.com/gc1/Prayers.json";
@@ -42,10 +64,15 @@ class PrayerList extends React.Component {
                     author: responseJSON[key].author,
                     title: responseJSON[key].title,
                     imageLink: responseJSON[key].imageLink,
+                    date: responseJSON[key].date,
                     answered: responseJSON[key].answered,
+                    description: responseJSON[key].description,
                     id: key
                 })
             }
+
+            this.sortByDate(dataArray);
+
             //Successful data fetching, update state of component
             this.setState({
                 data: dataArray,
@@ -58,29 +85,7 @@ class PrayerList extends React.Component {
           console.log("Prayer List - makeRequest() error", error);
         }
     };
-
-    /*
-    makeRequest = () => {
-        const url = "https://react-native-gcapp.firebaseio.com/-LXstc3dEuV9Da-h3Ak2.json";
-        this.setState({ loading: true });
-        fetch(url)
-        .then(response => response.json())
-        .then(response => {
-            this.setState({
-                data: response.prayerList,
-                fulldata: response.prayerList
-            })
-            console.log(response);
-            console.log(this.state.loading);
-        })
-        .catch(error => {
-            this.setState({ error, loading: false});
-        })
-    };*/
-
-    toPrayerDetail = () => {
-        console.log('Detail Screen');
-    };
+    
     
     renderSeperator = () => {
         return(
@@ -95,13 +100,14 @@ class PrayerList extends React.Component {
     };
 
     clearSearch = () => {
-        console.log("Clear Search");
         this.setState({
             query:''
         })
+        Keyboard.dismiss();
     }
 
     renderHeader(){
+        
         return (
 
             <View style={{ 
@@ -129,7 +135,7 @@ class PrayerList extends React.Component {
                         placeholderTextColor="grey"
                         underlineColorAndroid="transparent"
                         style={{flex:1, fontWeight: '700', backgroundColor:'white', marginLeft: 15}}
-                        onChangeText={(query) => this.setState({query})}
+                        onChangeText={ (text) => this.getNewSearches(text) }
                         value={this.state.query}
                     />
                     <Button
@@ -167,9 +173,56 @@ class PrayerList extends React.Component {
  
     };
 
+    renderRightSide(item){
+        return(
+            <View>
+               <Text style={{padding: 5, fontSize: 13, color:'rgba(0,0,0,0.5)'}}> {item.date.substring(0,5)} </Text>
+               <Icon style={{padding: 5, color:'yellow'}} type="ionicon" name="ios-notifications" size={18}></Icon> 
+            </View>
+
+        );
+    }
+
+    onRefresh = () => {
+        this.setState({refreshing: true});
+        this.makeRequest().then(() => {
+          this.setState({refreshing: false});
+        });
+    }
+
+    //Handles Search Bar searches
+    getNewSearches = (text) => {
+        this.setState({
+            query : text
+        })
+
+        //Store only searched items here
+        var searchedData = [];
+        var currentQuery = this.state.query.toLowerCase();
+
+        this.state.data.forEach(function(element){
+            if( element.title.toLowerCase().includes(currentQuery) || element.author.toLowerCase().includes(currentQuery) ){
+                searchedData.push({
+                    author: element.author,
+                    title: element.title,
+                    imageLink: element.imageLink,
+                    date: element.date,
+                    answered: element.answered,
+                    description: element.description,
+                    id: element.id
+                })
+            }
+        });
+
+        this.setState({
+            querySearches : searchedData
+        })
+    }
+
     render(){  
         
-        if(!this.state.loading){
+        //No searching and not refreshing/loading
+        if( (!this.state.loading || this.state.refreshing ) && (this.state.query.trim().length == 0) ){
             return (
 
                 <View style={{flex:1}}>
@@ -179,20 +232,27 @@ class PrayerList extends React.Component {
                      
                     <FlatList
                         data={this.state.data}
+                        refreshControl={
+                            <RefreshControl
+                              refreshing={this.state.refreshing}
+                              onRefresh={this.onRefresh}
+                            />
+                        }
                         renderItem={({ item }) => (
     
                             <TouchableOpacity style={{padding:5}}
                                 onPress={() => this.props.navigation.navigate('DetailScreen',{ 
                                     prayertitle: item.title, 
                                     author: item.author,
-                                    prayerImage: item.imageLink
+                                    prayerImage: item.imageLink,
+                                    description: item.description
                                     })}>
                                 <ListItem
-                                style={{backgroundColor:this.state.isSearchBarFocused? 'rgba(0,0,0,0.3)': 'white' }}
+                                containerStyle={{ alignItems: 'center' }}
                                 title={item.title}
                                 subtitle={item.author}
-                                leftAvatar={<Image source={{ uri: item.imageLink }} style={{borderRadius:30, height:50, width:50 }} />}
-                                rightIcon={<Icon name='chevron-right' type='material-community'/>}
+                                leftAvatar={<Avatar rounded source={{uri: item.imageLink}} size="medium"/>}
+                                rightSubtitle={this.renderRightSide(item)}
                                 />
                             </TouchableOpacity>
     
@@ -205,6 +265,53 @@ class PrayerList extends React.Component {
                     />
                 
                 </View>
+            );
+        }
+
+        //Searching
+        else if(this.state.query.trim().length != 0){
+
+            return (
+                <View style={{flex:1}}>
+                <View>
+                    {this.renderHeader()}
+                </View>
+                 
+                <FlatList
+                    data={this.state.querySearches}
+                    refreshControl={
+                        <RefreshControl
+                          refreshing={this.state.refreshing}
+                          onRefresh={this.onRefresh}
+                        />
+                    }
+                    renderItem={({ item }) => (
+
+                        <TouchableOpacity style={{padding:5}}
+                            onPress={() => this.props.navigation.navigate('DetailScreen',{ 
+                                prayertitle: item.title, 
+                                author: item.author,
+                                prayerImage: item.imageLink,
+                                description: item.description
+                                })}>
+                            <ListItem
+                            containerStyle={{ alignItems: 'center' }}
+                            title={item.title}
+                            subtitle={item.author}
+                            leftAvatar={<Avatar rounded source={{uri: item.imageLink}} size="medium"/>}
+                            rightSubtitle={this.renderRightSide(item)}
+                            />
+                        </TouchableOpacity>
+
+                    )}
+                    keyExtractor={item => item.author}
+                    ItemSeparatorComponent={this.renderSeperator}
+                    ListFooterComponent={this.renderFooter}
+                    keyExtractor={item => item.title}
+                    navigation={this.props.navigation}
+                />
+            
+            </View>
             );
         }
 
