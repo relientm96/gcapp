@@ -1,4 +1,4 @@
-# Social Media Group Application  (Still Developing)
+# Social Media Group Application 
 Built using React Native
 
 This App lets you and your church group:
