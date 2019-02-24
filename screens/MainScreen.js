@@ -1,6 +1,17 @@
 import React from 'react';
-import { StyleSheet, View, Image, SafeAreaView, ScrollView, Dimensions, ImageBackground, TouchableWithoutFeedback} from 'react-native';
+
+import { 
+    StyleSheet, 
+    View, 
+    Image, 
+    SafeAreaView,
+     ScrollView, 
+    Dimensions, 
+    ImageBackground, 
+    TouchableWithoutFeedback} from 'react-native';
+
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 import { Container, Header, Content, Card, CardItem, Body, Text, Title } from 'native-base';
 
 import { Font, AppLoading, BlurView } from 'expo';
@@ -185,7 +196,6 @@ class MainScreen extends React.Component {
                                 </View>
                             </ScrollView>
                     </View>
-
                 </View>                             
             </SafeAreaView>
             );

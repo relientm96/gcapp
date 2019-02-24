@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, KeyboardAvoidingView, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, KeyboardAvoidingView, AsyncStorage, SafeAreaView } from 'react-native';
 
 import Form from '../components/Form';
 
@@ -16,8 +16,8 @@ class LoginScreen extends React.Component {
       };
 
     render(){
-        return (
-        <View style={styles.container}>
+        return (    
+        <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView style={styles.formContainer}>
                 <Form/>
                 <TouchableOpacity 
@@ -30,7 +30,7 @@ class LoginScreen extends React.Component {
                     <Text style={{color: 'white', letterSpacing: 0.8}}>Dont have an account yet? <Text style={{color:'steelblue'}}>SignUp!</Text> </Text>
                 </View>
             </KeyboardAvoidingView> 
-        </View>
+        </SafeAreaView>
         );
     }
 }

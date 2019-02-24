@@ -1,5 +1,5 @@
 import React from 'react';
-import { View} from 'react-native';
+import { View, SafeAreaView} from 'react-native';
 import EventSwiper from '../components/EventSwiper';
 
 class EventScreen extends React.Component {
@@ -10,9 +10,9 @@ class EventScreen extends React.Component {
     render(){
 
         return (
-        <View style={{ flex:1 }}>  
+        <SafeAreaView style={{ flex:1 }}>  
             <EventSwiper/>
-        </View>
+        </SafeAreaView>
         );
     }
 
