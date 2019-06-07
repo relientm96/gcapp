@@ -7,7 +7,13 @@ This App lets you and your church group:
 3. Get latest bible study materials
 
 # Screens
-<div class="row">
-	<img src="images/frontLoginScreen.jpg" height="500px" width="500px">
-	<img src="images/homeScreen.png" height="500px width="500px">
+<div class="container>
+	<div class="row">
+		<div class="col-sm">
+			<img src="images/frontLoginScreen.jpg" height="500px" width="100%">
+		</div>
+		<div class="col-sm">
+			<img src="images/homeScreen.png" height="500px width="100%">
+		</div>
+	</div>
 </div>
