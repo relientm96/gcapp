@@ -8,6 +8,6 @@ This App lets you and your church group:
 
 # Screens
 <div class="row">
-	<img src="images/frontLoginScreen.jpg" height="400px" width="400px">
-	<img src="images/homeScreen.png" height="400px" width="400px">
+	<img src="images/frontLoginScreen.jpg">
+	<img src="images/homeScreen.png">
 </div>
