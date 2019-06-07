@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Gods Minions",
+    "name": "gcApp",
     "slug": "gcApp",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -24,6 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "An application for small christian communities",
+    "githubUrl": "https://github.com/relientm96/gcapp"
   }
 }
