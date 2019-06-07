@@ -7,5 +7,5 @@ This App lets you and your church group:
 3. Get latest bible study materials (To be added)
 
 # Login Screen
-![alt text](images/frontLoginScreen.jpg "height=200" "width=200")
-![alt text](images/homeScreen.png "height=200" "width=200")
+![alt text](images/frontLoginScreen.jpg 200x200)
+![alt text](images/homeScreen.png "height=200" 200x200)
