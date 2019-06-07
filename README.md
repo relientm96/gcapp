@@ -10,10 +10,10 @@ This App lets you and your church group:
 <div class="container>
 	<div class="row">
 		<div class="col-sm">
-			<img src="images/frontLoginScreen.jpg" height="500px" width="100%">
+			<img src="images/frontLoginScreen.jpg">
 		</div>
 		<div class="col-sm">
-			<img src="images/homeScreen.png" height="500px width="100%">
+			<img src="images/homeScreen.png">
 		</div>
 	</div>
 </div>
