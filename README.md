@@ -31,10 +31,10 @@ This App lets you and your church group:
 # Screens
 <div class="container>
 	<div class="row">
-		<div class="col-sm">
+		<div class="col-sm-12">
 			<img src="images/frontLoginScreen.jpg">
 		</div>
-		<div class="col-sm">
+		<div class="col-sm-12">
 			<img src="images/homeScreen.png">
 		</div>
 	</div>
