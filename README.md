@@ -30,6 +30,6 @@ This App lets you and your church group:
 
 # Screens
 <p float="left">
-  <img src="/homeScreen.png" width="100" />
-  <img src="/frontLoginScreen.png" width="100" /> 
+  <img src="images/homeScreen.png" width="100" />
+  <img src="images/frontLoginScreen.png" width="100" /> 
 </p>
