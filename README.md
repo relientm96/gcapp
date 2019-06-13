@@ -29,4 +29,7 @@ This App lets you and your church group:
 ```
 
 # Screens
-![](images/homeScreen.png "title-1") ![](frontLoginScreen.png "title-2")
+<p float="left">
+  <img src="/homeScreen.png" width="100" />
+  <img src="/frontLoginScreen.png" width="100" /> 
+</p>
