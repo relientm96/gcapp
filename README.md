@@ -6,6 +6,28 @@ This App lets you and your church group:
 2. Post prayers and details about it
 3. Get latest bible study materials
 
+## Application Structure
+```
+ App (Main Application)
+               -> Home
+                   -> Bible Study Details 
+                   -> Verse Details
+               -> Events
+                   -> Event Picture View
+                   -> Event Calendar View
+               -> Prayers
+                   -> Prayer List View
+                       -> Individual Prayer List Item Details
+               -> Profile
+                   Tab View:
+                   -> Main Profile View (With settings)
+                   -> Members List
+  Authentication 
+               -> Login
+               -> Register
+               -> Forgot Password
+```
+
 # Screens
 <div class="container>
 	<div class="row">
