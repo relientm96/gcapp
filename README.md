@@ -1,10 +1,18 @@
 # Gospel Community Application 
-Built using React Native
+
+Built using React Native and Expo.
 
 This App lets you and your church group:
 1. Organize events together
 2. Post prayers and details about it
 3. Get latest bible study materials
+
+# Screens
+<p float="left">
+   <img src="assests/splashimage.jpg" width="300px" />
+  <img src="images/frontLoginScreen.jpg" width="300px" /> 
+  <img src="images/homeScreen.png" width="300px" />
+</p>
 
 ## Application Structure
 ```
@@ -28,8 +36,3 @@ This App lets you and your church group:
                -> Forgot Password
 ```
 
-# Screens
-<p float="left">
-  <img src="images/frontLoginScreen.jpg" width="300px" /> 
-  <img src="images/homeScreen.png" width="300px" />
-</p>
