@@ -29,6 +29,5 @@ This App lets you and your church group:
 ```
 
 # Screens
-Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
-![](images/homeScreen.png)  |  ![](frontLoginScreen.png)
+![](images/homeScreen.png) |  ![](frontLoginScreen.png)
