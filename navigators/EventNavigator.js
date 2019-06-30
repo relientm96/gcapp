@@ -7,13 +7,6 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const EventStack = createMaterialTopTabNavigator(
     {
-        /*
-        EventMain:{
-            screen: EventScreen,
-            navigationOptions:{
-                tabBarLabel: 'Events'
-            }
-        },*/
         EventCalendar:{
             screen: EventCalendar,
             navigationOptions:{
