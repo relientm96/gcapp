@@ -15,7 +15,7 @@ export default class AgendaScreen extends Component {
     };
   }
 
-  //Set date when component finished loading
+  //Set current date when component finish mounting
   componentDidMount() {
     //Current Year
     this.state.currentDate += new Date().getFullYear(); 
@@ -55,9 +55,11 @@ export default class AgendaScreen extends Component {
   }
 
   loadItems(day) {
+    
     setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+        
+      for (let i = 0; i < 5; i++) {
+        const time = day.timestamp + i * 24 * 60 * 60 * 200;
         const strTime = this.timeToString(time);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
@@ -76,9 +78,10 @@ export default class AgendaScreen extends Component {
       this.setState({
         items: newItems
       });
-    }, 1000);
-    // console.log(`Load Items for ${day.year}-${day.month}`);
+    }, 500);
+    // console.log(`Load Items for ${day.year}-${day.month}`); 
   }
+
 
   renderItem(item) {
     return (
@@ -88,7 +91,7 @@ export default class AgendaScreen extends Component {
 
   renderEmptyDate() {
     return (
-      <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
+      <View style={styles.emptyDate}><Text>No Events!</Text></View>
     );
   }
 
