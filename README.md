@@ -1,6 +1,8 @@
 # Gospel Community Application 
 
 Built using React Native and Expo.
+Expo Link to project: https://expo.io/@matthewyfy/gcApp
+(Still in development)
 
 This App lets you and your church group:
 1. Organize events together
