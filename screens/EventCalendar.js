@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, SafeAreaView, Text} from 'react-native';
+import { View, SafeAreaView, Text} from 'react-native';
 
 class EventCalendar extends React.Component {
     constructor(props) {
