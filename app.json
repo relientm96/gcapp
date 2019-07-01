@@ -25,7 +25,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "An application for small christian communities",
+    "description": "An application for management of small christian study groups",
     "githubUrl": "https://github.com/relientm96/gcapp"
   }
 }

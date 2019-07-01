@@ -1,6 +1,6 @@
 # Gospel Community Application 
 
-Built using React Native and Expo.
+Built using React Native and Expo.  
 Expo Link to project: https://expo.io/@matthewyfy/gcApp
 (Still in development)
 
@@ -11,7 +11,7 @@ This App lets you and your small church group:
 
 # Screens
 <p float="left">
-   <img src="assets/splashimage.jpg" width="250px" />
+   <img src="assets/splashimage.png" width="250px" />
   <img src="images/frontLoginScreen.jpg" width="250px" /> 
   <img src="images/homeScreen.png" width="250px" />
 </p>
