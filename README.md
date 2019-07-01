@@ -1,6 +1,6 @@
 # Gospel Community Application 
 
-Built using React Native and Expo.  
+Built using React Native, Native Base and Expo.  
 Expo Link to project: https://expo.io/@matthewyfy/gcApp
 (Still in development)
 
@@ -17,8 +17,8 @@ This App lets you and your small church group:
 </p>
 
 ## To use application (in development)
-1. Download the Expo mobile application.
-2. Goto https://expo.io/@matthewyfy/gcApp.
+1. Download the Expo mobile application from app store.
+2. Go to https://expo.io/@matthewyfy/gcApp.
 3. Use the Expo app to scan the given QR code to use! 
 
 ## Application Structure
