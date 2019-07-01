@@ -12,7 +12,6 @@ import EventCalendar from '../screens/EventCalendar';
 
 //Navigators
 import PrayerStack from '../navigators/PrayerNavigator';
-import EventStack from '../navigators/EventNavigator';
 
 const AppNavigator = createMaterialTopTabNavigator(
     { 

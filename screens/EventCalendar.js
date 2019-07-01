@@ -25,7 +25,6 @@ export default class AgendaScreen extends Component {
     //Current Date
     this.state.currentDate = new Date().getDate(); 
     this.state.currentDate += "-";
-    console.log(this.state.currentDate);
   }
 
   render() {
