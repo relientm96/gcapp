@@ -55,7 +55,7 @@ class UserProfile extends React.Component {
 
                 <View style={{ padding:30, height: 150, flexDirection: 'row', alignItems: 'center'}}> 
 
-                    <Image style={{height: 100, width: 100, borderRadius: 50}} source={{uri: 'https://scontent.fkul8-1.fna.fbcdn.net/v/t1.0-9/16196015_10154888128487744_6901111466535510271_n.png?_nc_cat=103&_nc_ht=scontent.fkul8-1.fna&oh=0b30d1f322e3ca702c6b211b910ed6ce&oe=5CF4CDE9'}}/>
+                    <Image style={{height: 100, width: 100, borderRadius: 50}} source={{uri: 'https://image.flaticon.com/icons/png/512/17/17004.png'}}/>
                     <View style={{padding: 5, marginHorizontal: 20, }}>
                         <Text styles={{fontWeight: '600'}}> Matthew Yong </Text>
                         <Button 

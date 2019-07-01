@@ -40,7 +40,6 @@ class MainScreen extends React.Component {
     };
 
     componentDidMount() {
-        console.log('Main Screen Mount');
         this.makeRequest();
     };
   
